@@ -1,34 +1,24 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <>
+    <header className="absolute inset-x-0 top-0 h-16 py-8 mx-10 bg-white">
+    <h1 className="text-3xl font-semibold  font-bold rounded-sm">
+      iwebstermusic
+    </h1>
+    </header>
+    </ Nav>
+     <section className='flex flex-col text-1 font-sans bg-white'>
+        <p className='py-8 px-8 my-8 mx8 text-gray-900'>Hello! I'm &nbsp;
+         <b>Ian Webster,</b>
+         &nbsp; an acoustic guitarist and singer based in Greater Manchester. I'm available for weddings and events across the UK.</p>
+         <p className='px-8 my-8 mx8 text-gray-900'>I have been performing in bands as a bass-player and also as a solo acoustic player for over 20 years in various venues across the north-west.</p>
+      </section>
+  </>
   )
 }
 
