@@ -11,7 +11,6 @@ function App() {
       iwebstermusic
     </h1>
     </header>
-    </ Nav>
      <section className='flex flex-col text-1 font-sans bg-white'>
         <p className='py-8 px-8 my-8 mx8 text-gray-900'>Hello! I'm &nbsp;
          <b>Ian Webster,</b>
