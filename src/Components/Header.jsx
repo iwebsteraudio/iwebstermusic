@@ -2,7 +2,7 @@ import Logo from "./Logo";
 
 const Header = () => {
   return (
-    <header className="bg-dark-bckground sticky top-0 z-20 mx-auto w-full flex items-center justify-between border-b border-gray-500 p-8">
+    <header className="bg-white sticky top-0 z-20 mx-auto w-full flex items-center justify-between border-b border-gray-500 p-8">
       <Logo />
       <div className="flex flex-col items-start">
         <h1 className="text-xl font-bold">iwebstermusic</h1>

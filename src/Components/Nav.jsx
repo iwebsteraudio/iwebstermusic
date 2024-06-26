@@ -31,7 +31,7 @@ const Nav = () => {
   };
 
   return (
-    <nav className="w-full md:w-1/3">
+    <nav className="bg-white w-1/3">
       <div className=" hidden md:flex justify-between border-b border-gray-500 p-2">
         <NavLinks />
       </div>
