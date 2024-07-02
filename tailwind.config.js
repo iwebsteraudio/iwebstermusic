@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        righteous: ['"Righteous"','cursive'],
+      },
       colors: {
         primary: "#ff4800"
       }
