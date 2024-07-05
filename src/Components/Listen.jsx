@@ -1,16 +1,13 @@
 import { PlayCircle, SkipBack, SkipForward, PauseIcon } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import useSound from "use-sound";
+import songsData from "../../public/songsDatabase.json";
 
-const songs = [
-  { title: "All Of Me", path: "../../sounds/songs/AllOfMe.wav" },
-  { title: "Big Sur", path: "../../sounds/songs/BigSur.wav" },
-  {
-    title: "Bridge Over Troubled Water",
-    path: "../../sounds/songs/BridgeOverTroubledWater.wav",
-  },
-];
+
+
 const Listen = () => {
+  const songs = songsData.songs.filter(song => song.path);
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackIndex, setTrackIndex] = useState(0);
   const [currTime, setCurrTime] = useState({
@@ -86,24 +83,24 @@ const Listen = () => {
 
   return (
     
-      <div className="component rounded-10px bg-white w-1/4 max-w-600px m-4 mx-auto pb-8 border border-black">
+      <div className="rounded-10px bg-white w-1/4 max-w-600px m-4 mx-auto pb-8 border border-black">
         <h2 className="p-8">Playing Now:</h2>
         <div>
           <h3 className="title pb-8">{songs[trackIndex].title}</h3>
         </div>
-        <button className="playButton p-8" onClick={prevTrack}>
+        <button className="playButton hover:bg-stone-200 rounded-lg p-8" onClick={prevTrack}>
           <SkipBack />
         </button>
         {!isPlaying ? (
-          <button className="playButton p-8" onClick={playingButton}>
+          <button className="playButton hover:bg-stone-200 rounded-lg p-8" onClick={playingButton}>
             <PlayCircle />
           </button>
         ) : (
-          <button className="playButton p-8" onClick={playingButton}>
+          <button className="playButton hover:bg-stone-200 rounded-lg p-8" onClick={playingButton}>
             <PauseIcon />
           </button>
         )}
-        <button className="playButton p-8" onClick={nextTrack}>
+        <button className="playButton hover:bg-stone-200 rounded-lg p-8" onClick={nextTrack}>
           <SkipForward />
         </button>
         <div className="time">

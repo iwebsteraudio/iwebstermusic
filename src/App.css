@@ -1,5 +1,36 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   text-align: center;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: black;
+  opacity: 0.6;
+  z-index: 10;
+}
+
+.overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(to bottom, transparent 50%, rgba(255, 255, 255, 0.1) 50%);
+  background-size: 100% 5px; /* Adjust the size of scanlines */
+  z-index: 20;
+}
+
+.nav-bar {
+  transition: background-color 0.5s ease;
+}
+
+.nav-link {
+  transition: background-color 0.5s ease;
+}
+
+.playButton {
+  transition: background-color 0.5s ease;
 }

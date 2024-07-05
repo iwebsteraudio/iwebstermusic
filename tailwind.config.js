@@ -6,11 +6,14 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage:{
+        'custom-bg': "url('/home/iwebsteraudio/iwebstermusic/img/LivePic.jpg')",
+      },
       fontFamily: {
         righteous: ['"Righteous"','cursive'],
       },
       colors: {
-        primary: "#ff4800"
+        primary: "#030712"
       }
     },
   },
