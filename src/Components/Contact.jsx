@@ -6,6 +6,9 @@ const Contact = () => {
     contactEmail: "",
     message: "",
   });
+
+  const [status, setStatus] = useState("");
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -17,9 +20,30 @@ const Contact = () => {
     e.preventDefault();
 
     const { name, contactNumber, contactEmail, message } = formData;
-    alert(
-      `Name: ${name}\nContact Number: ${contactNumber}\nContact Email: ${contactEmail}\nMessage: ${message}`
-    );
+
+    try {
+      const response = await fetch("http://localhost:9090/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          contactNumber,
+          contactEmail,
+          message,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setStatus("Email sent successfully!");
+      } else {
+        setStatus(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      setStatus("Error sending email");
+    }
 
     setFormData({
       name: "",

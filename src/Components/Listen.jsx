@@ -7,7 +7,7 @@ import songsData from "../../public/songsDatabase.json";
 
 const Listen = () => {
   const songs = songsData.songs.filter(song => song.path);
-
+  
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackIndex, setTrackIndex] = useState(0);
   const [currTime, setCurrTime] = useState({
