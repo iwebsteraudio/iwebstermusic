@@ -1,7 +1,11 @@
 import songsData from "../../public/songsDatabase.json"
+import { fetchAllSongs } from "../Utils/Api";
 import SongCard from "./SongCard";
 
-const sixties = songsData.songs.filter(song => song.decade === "1960");
+const songData = fetchAllSongs();
+
+const sixties = songData.filter(song => song.decade === "1960");
+console.log(sixties)
 
 const SetList = () => {
     return (
