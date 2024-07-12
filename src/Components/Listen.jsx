@@ -83,7 +83,7 @@ const Listen = () => {
 
   return (
     
-      <div className="rounded-10px bg-white w-1/4 max-w-600px m-4 mx-auto pb-8 border border-black">
+      <div className="rounded-10px bg-white opacity-90 w-1/4 max-w-600px m-4 mx-auto pb-8 border border-black">
         <h2 className="p-8">Playing Now:</h2>
         <div>
           <h3 className="title pb-8">{songs[trackIndex].title}</h3>

@@ -12,13 +12,17 @@
 }
 
 .overlay::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: linear-gradient(to bottom, transparent 50%, rgba(255, 255, 255, 0.1) 50%);
+  background-image: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(255, 255, 255, 0.1) 50%
+  );
   background-size: 100% 5px; /* Adjust the size of scanlines */
   z-index: 20;
 }
@@ -33,4 +37,57 @@
 
 .playButton {
   transition: background-color 0.5s ease;
+}
+
+.song-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.song-group {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(6, 1fr));
+  }
+
+.group-header {
+  font-size: 24px;
+  color: white;
+  opacity: 90%;
+  margin-bottom: 10px;
+  text-align: left;
+  width: 100%;
+  padding-left: 150px;
+}
+
+.song-cards {
+  display: grid;
+  text-align: left;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.song-container {
+  position: relative;
+  height: auto;
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 768px) {
+  .song-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .song-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
