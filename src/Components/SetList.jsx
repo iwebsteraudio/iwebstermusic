@@ -68,10 +68,9 @@ const SetList = () => {
 
   return (
     <>
-      <div className="text-white"></div>
       <div>
         <label className="text-white" htmlFor="sort">
-          Sort By:{" "}
+          Sort By - 
         </label>
         <select
           className="rounded opacity-80 p-3"

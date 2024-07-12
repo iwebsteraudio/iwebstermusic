@@ -43,13 +43,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 10px;
 }
 
 .song-group {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(6, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(2, 1fr));
   }
 
 .group-header {
@@ -65,6 +65,7 @@
 .song-cards {
   display: grid;
   text-align: left;
+  gap: 5px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 

@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const SongCard = ({ song, loading, sortBy }) => {
   return (
-    <div className="song-container bg-white opacity-90 flex flex-col rounded m-8 p-4">
+    <div className="song-container bg-white opacity-90 rounded p-2">
       {loading ? (
         <>
           <svg
