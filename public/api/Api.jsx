@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const storedUser = localStorage.getItem("user");
-
+const BASE_URL = "http://localhost:9090/api"
 export const fetchAllSongs = () => {
   return axios
-    .get(`http://localhost:9090/api/songs`)
+    .get(`${BASE_URL}/songs`)
     .then((response) => {
       return response.data.songData;
     })
@@ -13,3 +13,11 @@ export const fetchAllSongs = () => {
       throw err;
     });
 };
+
+export const createUser = () =>{
+  return axios
+  .post(`${BASE_URL}/users`)
+  .then((response) =>{
+    return response.data.userData
+  })
+}

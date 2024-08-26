@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchAllSongs } from "../Utils/Api";
+import { fetchAllSongs } from "../../public/api/Api";
 import SongCard from "./SongCard";
 
 const SetList = () => {
@@ -70,7 +70,7 @@ const SetList = () => {
     <>
       <div>
         <label className="text-white" htmlFor="sort">
-          Sort By - 
+          Sort By -
         </label>
         <select
           className="rounded opacity-80 p-3"
@@ -84,10 +84,18 @@ const SetList = () => {
       <div className="song-list">
         {Object.keys(groupedSongs).map((group) => (
           <div key={group} className="song-group">
-            <h2 className=" group-header">{group}{sortBy==="decade" && "'s"}</h2>
+            <h2 className=" group-header">
+              {group}
+              {sortBy === "decade" && "'s"}
+            </h2>
             <div className="song-cards">
               {groupedSongs[group].map((song) => (
-                <SongCard key={song.song_id} song={song} loading={loading} sortBy={sortBy}/>
+                <SongCard
+                  key={song.song_id}
+                  song={song}
+                  loading={loading}
+                  sortBy={sortBy}
+                />
               ))}
             </div>
           </div>
