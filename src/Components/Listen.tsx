@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 import useSound from "use-sound";
 import songsData from "../../public/songsDatabase.json";
 
-
-
 const Listen = () => {
   const songs = songsData.songs.filter(song => song.path);
   

@@ -16,7 +16,7 @@ function App() {
     <div className="relative min-h-screen w-full">
       {/* Background image */}
       <div
-        className={`fixed inset-0 bg-[url('../img/LivePic.jpg')] bg-cover bg-center bg-no-repeat bg-fixed`}
+        className={`fixed inset-0 bg-[url('../assets/img/LivePic.jpg')] bg-cover bg-center bg-no-repeat bg-fixed`}
         style={{ backgroundPositionY: 120 }}
       ></div>
       {/* Overlay */}

@@ -1,6 +1,5 @@
 import axios from "axios";
 import YtApiKey from "./YoutubeApiKey";
-import { error } from "console";
 
 const storedUser = localStorage.getItem("user");
 const BASE_URL = "http://localhost:9090/api";
@@ -35,13 +34,15 @@ export const postEmail = (formData: {}) => {
 };
 
 export const fetchYouTube = (): Promise<void | {}> => {
-  const apiKey = YtApiKey;
+  const apiKey = YtApiKey();
+  const channelId = "UClTznGqvKRFrVO8ZPhHtiCg";
   return axios
     .get(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc%2Cc0KYU2j0TM4%2CeIho2S0ZahI&key=${apiKey}`
+      `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=10`
     )
-    .then((data) => data)
-    .then((list) => console.log(list))
+    .then((response) => {
+      return response.data.items.filter((item)=> item.id.kind === "youtube#video")
+      })
     .catch((err) => {
       console.log(err);
       throw err;
