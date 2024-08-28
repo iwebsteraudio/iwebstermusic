@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GetYtVideos } from "../../public/api/YoutubeVidsApi";
+import { fetchYouTube } from "../../api/Api";
 
 type VideosProps = {
   id: string;
@@ -20,12 +20,12 @@ const Videos = (): React.ReactElement<{}> => {
   const [videoData, setVideoData] = useState<any>([]);
 
   useEffect(() => {
-    GetYtVideos()
+    fetchYouTube()
       .then((data) => {
         setVideoData(transformData(data));
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
       });
   }, []);
 

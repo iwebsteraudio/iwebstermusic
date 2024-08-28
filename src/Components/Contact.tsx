@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { postEmail } from "../../api/Api.tsx";
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -9,42 +11,30 @@ const Contact = () => {
 
   const [status, setStatus] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (event) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [event.target.name]: event.target.value,
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    const { name, contactNumber, contactEmail, message } = formData;
-
-    try {
-      const response = await fetch("http://localhost:9090/api/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          contactNumber,
-          contactEmail,
-          message,
-        }),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        setStatus("Email sent successfully!");
+    postEmail(formData)
+    .then((response)=>{
+      if (response.data){
+        setStatus("Email sent successfully!")
       } else {
-        setStatus(`Error: ${data.message}`);
+        setStatus(`Error: ${response.data.message}`);
       }
-    } catch (error) {
+    })
+    .catch((error: unknown)=>{
       setStatus("Error sending email");
-    }
-
+    })
+     
+  
+    
     setFormData({
       name: "",
       contactNumber: "",
@@ -124,7 +114,7 @@ const Contact = () => {
           id="message"
           name="message"
           placeholder="Your Message"
-          rows="5"
+          rows= {5}
           value={formData.message}
           onChange={handleChange}
           required

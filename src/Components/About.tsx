@@ -1,3 +1,5 @@
+import React from "react";
+
 const About = () => {
   return (
     <div className="bg-white m-8 p-8 shadow-md rounded-md">

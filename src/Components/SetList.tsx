@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { fetchAllSongs } from "../../public/api/Api";
+import React, { useEffect, useState } from "react";
+import { fetchAllSongs } from "../../api/Api";
 import SongCard from "./SongCard";
 
 const SetList = () => {
   const [songData, setSongData] = useState([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = null;
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState("decade");
 
