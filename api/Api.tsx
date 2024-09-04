@@ -53,6 +53,18 @@ export const fetchYouTube = async (): Promise<YouTubeVideo[]> => {
   }
 };
 
+export const fetchBlog = async () =>{
+  
+  try {
+  const response = await axios.get(`https://iwebsteraudio.wordpress.com/wp-json/wp/v2/posts`)
+  console.log(response)  
+  return response;
+} catch (err) {
+  console.error(err);
+  throw err;
+}
+}
+
 export const fetchAllSongs = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/songs`);

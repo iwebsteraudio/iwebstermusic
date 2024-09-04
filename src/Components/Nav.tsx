@@ -23,6 +23,9 @@ const NavLinks = () => {
       <NavLink to="/contact" className={"nav-link hover:underline hover:bg-stone-200 rounded px-4 py-2"}>
         Contact
       </NavLink>
+      <NavLink to="/blog" className={"nav-link hover:underline hover:bg-stone-200 rounded px-4 py-2"}>
+        Blog
+      </NavLink>
     </>
   );
 };

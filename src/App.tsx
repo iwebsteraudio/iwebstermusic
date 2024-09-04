@@ -10,6 +10,7 @@ import About from "./Components/About";
 import Contact from "./Components/Contact";
 import SetList from "./Components/SetList";
 import Videos from "./Components/Videos";
+import Blog from "./Components/Blog";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/set-list" element={<SetList />} />
             <Route path="/videos" element={<Videos />} />
+            <Route path="/blog" element={<Blog />} />
           </Routes>
         </main>
         <Footer className="border-gray-500 bg-stone-200 mt-auto p-8 border-t-4" />
