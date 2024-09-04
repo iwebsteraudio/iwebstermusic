@@ -15,6 +15,7 @@ export default {
       colors: {
         primary: "#030712"
       }
+      
     },
   },
   plugins: [],

@@ -1,7 +1,11 @@
+@import '../node_modules/slick-carousel/slick/slick.css';
+@import '../node_modules/slick-carousel/slick/slick-theme.css';
+
 #root {
   margin: 0 auto;
   text-align: center;
 }
+
 
 .overlay {
   position: fixed;
@@ -50,7 +54,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(2, 1fr));
-  }
+}
 
 .group-header {
   font-size: 24px;

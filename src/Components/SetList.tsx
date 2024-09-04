@@ -2,23 +2,31 @@ import React, { useEffect, useState } from "react";
 import { fetchAllSongs } from "../../api/Api";
 import SongCard from "./SongCard";
 
-const SetList = () => {
+interface Song {
+  song_id: string;
+  title: string;
+  decade: string;
+  genre: string;
+  patch: string;
+}
+
+const SetList: React.FC = () => {
   const [songData, setSongData] = useState([]);
-  const [error, setError] = null;
+  const [error, setError] = useState<String | null> (null);
   const [loading, setLoading] = useState(true);
-  const [sortBy, setSortBy] = useState("decade");
+  const [sortBy, setSortBy] = useState<"decade" | "genre">("decade");
 
   useEffect(() => {
     const fetchSongs = async () => {
       try {
         const songs = await fetchAllSongs();
-        const sortedSongs = songs.sort((a, b) =>
+        const sortedSongs = songs.sort((a: Song, b: Song) =>
           a.decade.localeCompare(b.decade)
         );
-        setSongData(sortedSongs.map((song) => ({ ...song, loading: true })));
+        setSongData(sortedSongs.map((song:{}) => ({ ...song, loading: true })));
 
         setTimeout(() => {
-          setSongData(sortedSongs.map((song) => ({ ...song, loading: false })));
+          setSongData(sortedSongs.map((song:{}) => ({ ...song, loading: false })));
           setLoading(false);
         }, 1500);
       } catch (error) {
@@ -29,17 +37,17 @@ const SetList = () => {
     fetchSongs();
   }, []);
 
-  const handleSort = (option) => {
+  const handleSort = (option: "decade" | "genre") => {
     setSortBy(option);
     let sortedSongs;
     switch (option) {
       case "decade":
-        sortedSongs = [...songData].sort((a, b) =>
+        sortedSongs = [...songData].sort((a: Song, b: Song) =>
           a.decade.localeCompare(b.decade)
         );
         break;
       case "genre":
-        sortedSongs = [...songData].sort((a, b) =>
+        sortedSongs = [...songData].sort((a: Song, b: Song) =>
           a.genre.localeCompare(b.genre)
         );
         break;
@@ -49,8 +57,8 @@ const SetList = () => {
     setSongData(sortedSongs);
   };
 
-  const groupSongs = (songs, sortBy) => {
-    return songs.reduce((groups, song) => {
+  const groupSongs = (songs: Song[], sortBy: "decade" | "genre"): Record<string, Song[]> => {
+    return songs.reduce((groups: Record<string, Song[]>, song: Song) => {
       const key = song[sortBy];
       if (!groups[key]) {
         groups[key] = [];
@@ -75,7 +83,7 @@ const SetList = () => {
         <select
           className="rounded opacity-80 p-3"
           id="sort"
-          onChange={(e) => handleSort(e.target.value)}
+          onChange={(e) => handleSort(e.target.value as "decade" | "genre")}
         >
           <option value="decade">Decade</option>
           <option value="genre">Genre</option>
@@ -89,7 +97,7 @@ const SetList = () => {
               {sortBy === "decade" && "'s"}
             </h2>
             <div className="song-cards">
-              {groupedSongs[group].map((song) => (
+              {groupedSongs[group].map((song: Song) => (
                 <SongCard
                   key={song.song_id}
                   song={song}

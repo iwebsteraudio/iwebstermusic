@@ -1,56 +1,71 @@
 import React, { useEffect, useState } from "react";
 import { fetchYouTube } from "../../api/Api";
+import Slider from "react-slick";
 
-type VideosProps = {
+type VideoElementProps = {
   id: string;
 };
 
-const VideoElement = (props: VideosProps): React.ReactElement<{}> => {
+const VideoElement: React.FC<VideoElementProps> = ({ id }) => {
   return (
-    <div className="mx-5 p-8">
+    <div className="relative pb-[56.25%] h-0 overflow-hidden mx-auto">
       <iframe
-        width="450"
-        height="280"
-        src={`http://www.youtube.com/embed/${props.id}`}
-        frameBorder="5"
+        className="rounded-lg absolute top-0 left-0 w-full h-full"
+        src={`https://www.youtube.com/embed/${id}`}
+        frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
+        title={id}
       ></iframe>
     </div>
   );
 };
 
-const Videos = (): React.ReactElement<{}> => {
-  const [videoData, setVideoData] = useState<any>([]);
+const Videos: React.FC = () => {
+  const [videoData, setVideoData] = useState<string[]>([]);
 
-  const [err, setErr] = useState();
+  const [err, setErr] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchYouTube()
-      .then((data) => {
-        setVideoData(transformData(data));
-      })
-      .catch((err) => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchYouTube();
+        const transformedData = transformData(data);
+        setVideoData(transformedData);
+      } catch (err) {
         console.log("Failed to fetch Youtube Videos", err);
-        setErr(err);
-      });
+        setErr("Error fetching videos. Please try again later.");
+      }
+    };
+    fetchData();
   }, []);
 
+  const transformData = (data: any[]): string[] => {
+    return data.map((item: any) => item.id.videoId);
+  };
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
-    <div className="flex flex-col items-center p-8 video-cont justify-between">
-      {videoData.length
-        ? videoData.map((videoId: string, idx: number) => (
+    <div>
+      {err && <p className="text-red-500">{err}</p>}
+      {videoData.length > 0 ? (
+        <Slider {...settings} className="w=[80%]">
+          {videoData.map((videoId: string, idx: number) => (
             <VideoElement key={idx} id={videoId} />
-          ))
-        : []}
+          ))}
+        </Slider>
+      ) : (
+        !err && <p>Loading videos...</p>
+      )}
     </div>
   );
-};
-
-const transformData = (data: any) => {
-  return data.map((item: any) => {
-    return item.id.videoId;
-  });
 };
 
 export default Videos;

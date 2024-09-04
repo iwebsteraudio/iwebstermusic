@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { postEmail } from "../../api/Api.tsx";
 
-const Contact = () => {
+const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
     contactNumber: "",
@@ -9,32 +9,31 @@ const Contact = () => {
     message: "",
   });
 
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState<string>("");
 
-  const handleChange = (event) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    postEmail(formData)
-    .then((response)=>{
-      if (response.data){
-        setStatus("Email sent successfully!")
+    try {
+      const response = await postEmail(formData);
+      if (response.data) {
+        setStatus("Email sent successfully!");
       } else {
         setStatus(`Error: ${response.data.message}`);
       }
-    })
-    .catch((error: unknown)=>{
+    } catch (error: unknown) {
       setStatus("Error sending email");
-    })
-     
-  
-    
+    }
+
     setFormData({
       name: "",
       contactNumber: "",
@@ -114,7 +113,7 @@ const Contact = () => {
           id="message"
           name="message"
           placeholder="Your Message"
-          rows= {5}
+          rows={5}
           value={formData.message}
           onChange={handleChange}
           required
