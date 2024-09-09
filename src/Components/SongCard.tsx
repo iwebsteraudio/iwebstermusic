@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
 
-const SongCard = ({ song, loading, sortBy }) => {
+const SongCard: React.FC  = ({ song, loading, sortBy }) => {
   return (
     <div className="song-container bg-white opacity-90 cd rounded p-2">
       {loading ? (

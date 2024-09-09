@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 interface FooterProps {
     className?: string;
@@ -7,7 +8,8 @@ interface FooterProps {
 const Footer:React.FC<FooterProps> = ({className}) =>{
     return (
         <footer className={className}>
-            <p>07913111628 for enquiries</p>
+            <p>07913111628 for enquiries or...</p>
+            <NavLink to="/contact">Contact Me</NavLink>
         </footer>
     )
 }

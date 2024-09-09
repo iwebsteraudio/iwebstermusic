@@ -7,7 +7,7 @@ interface Song {
   title: string;
   decade: string;
   genre: string;
-  patch: string;
+  path: string;
 }
 
 const SetList: React.FC = () => {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
-const NavLinks = () => {
+const NavLinks: React.FC  = () => {
   return (
     <>
       {/* <NavLink to="/login" className={"nav-link hover:underline hover:bg-stone-200 rounded px-4 py-2"}>

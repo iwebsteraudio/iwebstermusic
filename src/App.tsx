@@ -11,7 +11,7 @@ import Contact from "./Components/Contact";
 import SetList from "./Components/SetList";
 import Videos from "./Components/Videos";
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="relative min-h-screen w-full">
       {/* Background image */}
