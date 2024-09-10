@@ -60,7 +60,7 @@ const Listen: React.FC = () => {
         setIsLoading(false);
       }
     };
-    
+
     fetchSongs();
   }, []);
 
@@ -76,7 +76,7 @@ const Listen: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (sound) {
-        const seekPosition = sound.seek([]) as number
+        const seekPosition = sound.seek([]) as number;
         setSeconds(seekPosition);
         const min = Math.floor(seekPosition / 60);
         const sec = Math.floor(seekPosition % 60);
@@ -112,8 +112,12 @@ const Listen: React.FC = () => {
     setTrackIndex((prevIndex) => (prevIndex - 1 + songs.length) % songs.length);
   };
 
-  if(isLoading) {
-    return <p className="text-white">Loading Songs.</p>
+  if (isLoading) {
+    return (
+      <p className="rounded-3xl bg-white opacity-90 w-1/4 max-w-600px m-4 mx-auto pb-8 border border-black">
+        Loading Songs.
+      </p>
+    );
   }
 
   if (err) {
@@ -121,10 +125,10 @@ const Listen: React.FC = () => {
   }
 
   return (
-    <div className="rounded-10px bg-white opacity-90 w-1/4 max-w-600px m-4 mx-auto pb-8 border border-black">
+    <div className="rounded-3xl bg-white opacity-90 w-1/4 max-w-600px m-4 mx-auto pb-8 border border-black">
       <h2 className="p-8">Playing Now:</h2>
       <div>
-        <h3 className="title pb-8">{songs[trackIndex].title}</h3>
+        <h3 className="title font-righteous pb-8">{songs[trackIndex].title}</h3>
       </div>
       <button
         className="playButton hover:bg-stone-200 rounded-lg p-8"
