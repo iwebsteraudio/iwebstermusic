@@ -52,6 +52,7 @@ const Listen: React.FC = () => {
     const fetchSongs = async () => {
       try {
         const data = await fetchAllSongs();
+        console.log(data)
         setSongData(data);
       } catch (err) {
         console.log("Failed to fetch songs", err);
@@ -114,7 +115,7 @@ const Listen: React.FC = () => {
 
   if (isLoading) {
     return (
-      <p className="rounded-3xl bg-white opacity-90 w-1/4 max-w-600px m-4 mx-auto pb-8 border border-black">
+      <p className="rounded-3xl bg-white opacity-90 w-1/4 max-w-600px m-4 mx-auto p-8 border border-black">
         Loading Songs.
       </p>
     );
@@ -130,9 +131,12 @@ const Listen: React.FC = () => {
       <div>
         <h3 className="title font-righteous pb-8">{songs[trackIndex].title}</h3>
       </div>
+
+      {/* Player Controls */}
       <button
         className="playButton hover:bg-stone-200 rounded-lg p-8"
         onClick={prevTrack}
+        disabled={!sound}
       >
         <SkipBack />
       </button>
@@ -140,6 +144,7 @@ const Listen: React.FC = () => {
         <button
           className="playButton hover:bg-stone-200 rounded-lg p-8"
           onClick={playingButton}
+          disabled={!sound}
         >
           <PlayCircle />
         </button>
@@ -147,6 +152,7 @@ const Listen: React.FC = () => {
         <button
           className="playButton hover:bg-stone-200 rounded-lg p-8"
           onClick={playingButton}
+          disabled={!sound}
         >
           <PauseIcon />
         </button>
@@ -154,28 +160,40 @@ const Listen: React.FC = () => {
       <button
         className="playButton hover:bg-stone-200 rounded-lg p-8"
         onClick={nextTrack}
+        disabled={!sound}
       >
         <SkipForward />
       </button>
-      <div className="time">
-        <p>
-          {currTime.min}:{currTime.sec}
-        </p>
-        <p>
-          {time.min}:{time.sec}
-        </p>
-      </div>
+
+      {/* Time Display */}
+      {duration ? (
+        <div className="time">
+          <p>
+            {currTime.min}:{currTime.sec}
+          </p>
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
+
+      {/* Seek Bar */}
+
       <input
         type="range"
         min="0"
         max={sec || 0}
-        defaultValue="0"
         value={seconds || 0}
         className="timeline"
         onChange={(e) => {
           sound.seek([Number(e.target.value)]);
         }}
+        disabled={!sound}
       />
+      {duration && (
+        <p>
+          Song Length: {time.min}:{time.sec}
+        </p>
+      )}
     </div>
   );
 };
