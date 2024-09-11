@@ -23,36 +23,12 @@ const Listen: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [seconds, setSeconds] = useState<number | undefined>(undefined);
 
-  // Filters for songs with a valid path to an audio file
-  const songs: Song[] = songData.filter((song) => song.path);
-
-  // useSound Hook  to play songs
-  const [play, { pause, stop, duration, sound }] = useSound(
-    songs[trackIndex]?.path || "",
-    {
-      onend: () => {
-        setIsPlaying(false);
-      },
-    }
-  );
-
-  const formatTime = (num: number) => String(num).padStart(2, "0");
-
-  // calculate song duration
-  const sec = (duration ?? 0) / 1000;
-  const min = Math.floor(sec / 60);
-  const secRemain = Math.floor(sec % 60);
-  const time = {
-    min: formatTime(min),
-    sec: formatTime(secRemain),
-  };
-
   // Fetch songs on initial render
   useEffect(() => {
     const fetchSongs = async () => {
       try {
         const data = await fetchAllSongs();
-        console.log(data)
+        console.log(data);
         setSongData(data);
       } catch (err) {
         console.log("Failed to fetch songs", err);
@@ -64,6 +40,31 @@ const Listen: React.FC = () => {
 
     fetchSongs();
   }, []);
+
+  // Filters for songs with a valid path to an audio file
+  const songs: Song[] = songData.filter((song) => song.path);
+
+  // Check if the song path is ready before initializing useSound
+  const songPath = songs[trackIndex]?.path || null;
+
+  // useSound Hook  to play songs
+
+  const [play, { pause, stop, duration, sound }] = useSound(songPath || "assets/songs/ReadMyMind.wav", {
+    onend: () => {
+      setIsPlaying(false);
+    },
+  });
+
+  const formatTime = (num: number) => String(num).padStart(2, "0");
+
+  // calculate song duration
+  const sec = (duration ?? 0) / 1000;
+  const min = Math.floor(sec / 60);
+  const secRemain = Math.floor(sec % 60);
+  const time = {
+    min: formatTime(min),
+    sec: formatTime(secRemain),
+  };
 
   // Handle skiptrack, stops previous track when trackIndex Changes
   useEffect(() => {
@@ -126,44 +127,52 @@ const Listen: React.FC = () => {
   }
 
   return (
-    <div className="rounded-3xl bg-white opacity-90 w-1/4 max-w-600px m-4 mx-auto pb-8 border border-black">
+    <div className="rounded-3xl bg-white opacity-90 w-1/4 max-w-600px m-4 mx-auto pb-8 border-4 border-blue-600 text-xs">
       <h2 className="p-8">Playing Now:</h2>
       <div>
-        <h3 className="title font-righteous pb-8">{songs[trackIndex].title}</h3>
+        <h3 className="title font-righteous text-2xl pb-8">
+          {songs[trackIndex].title}
+        </h3>
       </div>
 
       {/* Player Controls */}
-      <button
-        className="playButton hover:bg-stone-200 rounded-lg p-8"
-        onClick={prevTrack}
-        disabled={!sound}
-      >
-        <SkipBack />
-      </button>
-      {!isPlaying ? (
+      <div className="flex items-center justify-evenly text-xs">
         <button
           className="playButton hover:bg-stone-200 rounded-lg p-8"
-          onClick={playingButton}
+          onClick={prevTrack}
           disabled={!sound}
         >
-          <PlayCircle />
+          <SkipBack size={30} className="mb-2" />
+          <span>prev</span>
         </button>
-      ) : (
+        {!isPlaying ? (
+          <button
+            className="playButton hover:bg-stone-200 rounded-lg p-8"
+            onClick={playingButton}
+            disabled={!sound}
+          >
+            <PlayCircle size={60} strokeWidth={1.2} className="mb-2" />
+            <span>play</span>
+          </button>
+        ) : (
+          <button
+            className="playButton hover:bg-stone-200 rounded-lg p-8"
+            onClick={playingButton}
+            disabled={!sound}
+          >
+            <PauseIcon size={60} strokeWidth={1.2} className="mb-2" />
+            <span>pause</span>
+          </button>
+        )}
         <button
           className="playButton hover:bg-stone-200 rounded-lg p-8"
-          onClick={playingButton}
+          onClick={nextTrack}
           disabled={!sound}
         >
-          <PauseIcon />
+          <SkipForward size={30} className="mb-2" />
+          <span>next</span>
         </button>
-      )}
-      <button
-        className="playButton hover:bg-stone-200 rounded-lg p-8"
-        onClick={nextTrack}
-        disabled={!sound}
-      >
-        <SkipForward />
-      </button>
+      </div>
 
       {/* Time Display */}
       {duration ? (
