@@ -6,7 +6,7 @@ import Header from "./Components/Header";
 import Nav from "./Components/Nav";
 import Footer from "./Components/Footer";
 import Listen from "./Components/Listen";
-import About from "./Components/About";
+
 import Contact from "./Components/Contact";
 import SetList from "./Components/SetList";
 import Videos from "./Components/Videos";
@@ -25,11 +25,10 @@ const App: React.FC = () => {
       <div className="relative z-20 flex flex-col min-h-screen">
         <Header />
         <Nav />
-        <main className="flex-grow p-16 px-8">
+        <main className="flex-grow p-5">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/listen" element={<Listen />} />
-            <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/set-list" element={<SetList />} />
             <Route path="/videos" element={<Videos />} />
