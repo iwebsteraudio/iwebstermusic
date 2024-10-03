@@ -6,10 +6,11 @@ const Home: React.FC = () => {
     <>
       <section className="shadow-md mt-20 mb-96 p-8 rounded-md text-1 font-monaSans bg-white">
         <img
-          className="rounded-full w-1/3 float-left mr-5 mb-20"
-          src="/assets/img/MeAtWineandWallop.png"
+          className="rounded-full object-cover h-[30rem] w-1/3 float-left mr-5 mb-20"
+          src="/assets/img/MeAtWineandWallopColour.png"
           alt="Ian Webster at the Wine and Wallop bar, playing acoustic guitar"
         ></img>
+        <div className="w-2/3 ml-20">
         <p className="pb-8 ">
           Hello! I'm &nbsp;
           <b>Ian Webster,</b>
@@ -44,6 +45,7 @@ const Home: React.FC = () => {
         <a href="#contact" className="nav-link hover:underline hover:bg-stone-200 rounded px-20 py-2">
           Contact Me
         </a>
+        </div>
       </section>
 
       <div id="contact">

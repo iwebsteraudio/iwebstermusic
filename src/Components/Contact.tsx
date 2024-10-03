@@ -12,6 +12,11 @@ const Contact: React.FC = () => {
   });
 
   const [status, setStatus] = useState<string>("");
+  const [errors, setErrors] = useState({
+    contactNumber: "",
+  });
+
+  const phoneNumberRegex = /^\+?(\d{10,13})$/;
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -24,7 +29,15 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!phoneNumberRegex.test(formData.contactNumber)) {
+      setErrors({
+        ...errors,
+        contactNumber: "Please enter a valid phone number.",
+      });
+      return;
+    }
 
+    setErrors({ ...errors, contactNumber: "" });
     try {
       const response = await postEmail(formData);
       if (response.data) {
@@ -46,9 +59,9 @@ const Contact: React.FC = () => {
     });
   };
   return (
-    <>
+    <div className=" shadow-md rounded-md flex items-center justify-center bg-white w-full">
       <form
-        className="shadow-md mb-8 p-8 rounded-md text-1 font-monaSans bg-white"
+        className="w-2/3 mb-8 p-8  text-1 font-monaSans "
         onSubmit={handleSubmit}
       >
         <h3 className="text-3xl font-extrabold italic text-center mb-6">
@@ -66,17 +79,23 @@ const Contact: React.FC = () => {
             onChange={handleChange}
             required
           />
-
-          <input
-            className="border-b border-gray-300 focus:border-black focus:outline-none transition-all duration-1000 py-2 px-3"
-            id="contactNumber"
-            name="contactNumber"
-            type="text"
-            placeholder="Your Number?"
-            value={formData.contactNumber}
-            onChange={handleChange}
-            required
-          />
+          <div>
+            <input
+              className={`border-b border-gray-300 focus:border-black focus:outline-none transition-all duration-1000 py-2 px-3 ${
+                errors.contactNumber ? "border-red-500" : ""
+              }`}
+              id="contactNumber"
+              name="contactNumber"
+              type="text"
+              placeholder="Your Number?"
+              value={formData.contactNumber}
+              onChange={handleChange}
+              required
+            />
+            {errors.contactNumber && (
+              <p className="text-red-500 text-sm">{errors.contactNumber}</p>
+            )}
+          </div>
           <input
             className="border-b border-gray-300 focus:border-black focus:outline-none transition-all duration-1000 py-2 px-3"
             id="contactEmail"
@@ -98,41 +117,41 @@ const Contact: React.FC = () => {
             onChange={handleChange}
             required
           />
-
-          <div className="mb-4">
-            <input
-              className="border-b border-gray-300 focus:border-black focus:outline-none transition-all duration-1000 w-full py-2 px-3"
-              id="subject"
-              name="subject"
-              placeholder="What sort of event?"
-              value={formData.message}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <textarea
-              className="border-b border-gray-300 focus:border-black focus:outline-none transition-all duration-1000 w-full py-2 px-3"
-              id="message"
-              name="message"
-              placeholder="Tell me about the event, any special requests?..."
-              rows={5}
-              value={formData.message}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
         </div>
-          <button
-            className="nav-link hover:underline hover:bg-stone-200 rounded px-20 py-4"
-            type="submit"
-          >
-            Send
-          </button>
+
+        <div className="mb-4">
+          <input
+            className="border-b border-gray-300 focus:border-black focus:outline-none transition-all duration-1000 w-full py-2 px-3"
+            id="subject"
+            name="subject"
+            placeholder="What sort of event are you organising?"
+            value={formData.subject}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <textarea
+            className="border-b border-gray-300 focus:border-black focus:outline-none transition-all duration-1000 w-full py-2 px-3"
+            id="message"
+            name="message"
+            placeholder="Tell me about the event, any special requests?..."
+            rows={5}
+            value={formData.message}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <button
+          className="nav-link hover:underline hover:bg-stone-200 rounded px-20 py-4"
+          type="submit"
+        >
+          Send
+        </button>
       </form>
-    </>
+    </div>
   );
 };
 
