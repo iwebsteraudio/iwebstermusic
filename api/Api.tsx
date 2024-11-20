@@ -63,6 +63,16 @@ export const fetchAllSongs = async () => {
   }
 };
 
+export const fetchMp3s = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/mp3s`);
+    return response.data.mp3Data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
 export const createUser = async (formData: {}) => {
   try {
     const response = await axios.post(`${BASE_URL}/users`, formData);

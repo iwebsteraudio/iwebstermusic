@@ -1,14 +1,11 @@
 import { PlayCircle, SkipBack, SkipForward, PauseIcon } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import useSound from "use-sound";
-import { fetchAllSongs } from "../../api/Api";
+import { fetchMp3s } from "../../api/Api";
 
 interface Song {
-  song_id?: string;
-  title: string;
-  decade: string;
-  genre: string;
-  path?: string;
+  fileName: string;
+  url: string;
 }
 
 const Listen: React.FC = () => {
@@ -27,8 +24,7 @@ const Listen: React.FC = () => {
   useEffect(() => {
     const fetchSongs = async () => {
       try {
-        const data = await fetchAllSongs();
-        console.log(data);
+        const data = await fetchMp3s();
         setSongData(data);
       } catch (err) {
         console.log("Failed to fetch songs", err);
@@ -41,20 +37,12 @@ const Listen: React.FC = () => {
     fetchSongs();
   }, []);
 
-  // Filters for songs with a valid path to an audio file
-  const songs: Song[] = songData.filter((song) => song.path);
+  const songPath = songData[trackIndex]?.url || "";
 
-  // Check if the song path is ready before initializing useSound
-  const songPath = songs[trackIndex]?.path || null;
-
-  // useSound Hook  to play songs
-
-  const [play, { pause, stop, duration, sound }] = useSound(songPath || "assets/songs/ReadMyMind.wav", {
-    onend: () => {
-      setIsPlaying(false);
-    },
+  const [play, { pause, stop, duration, sound }] = useSound(songPath || "", {
+    format: ["mp3"],
+    onend: () => setIsPlaying(false),
   });
-
   const formatTime = (num: number) => String(num).padStart(2, "0");
 
   // calculate song duration
@@ -80,6 +68,7 @@ const Listen: React.FC = () => {
       if (sound) {
         const seekPosition = sound.seek([]) as number;
         setSeconds(seekPosition);
+
         const min = Math.floor(seekPosition / 60);
         const sec = Math.floor(seekPosition % 60);
         setCurrTime({
@@ -103,7 +92,7 @@ const Listen: React.FC = () => {
   const nextTrack = () => {
     pause();
     setIsPlaying(false);
-    setTrackIndex((prevIndex) => (prevIndex + 1) % songs.length);
+    setTrackIndex((prevIndex) => (prevIndex + 1) % songData.length);
     play();
     setIsPlaying(true);
   };
@@ -111,7 +100,9 @@ const Listen: React.FC = () => {
   const prevTrack = () => {
     pause();
     setIsPlaying(false);
-    setTrackIndex((prevIndex) => (prevIndex - 1 + songs.length) % songs.length);
+    setTrackIndex(
+      (prevIndex) => (prevIndex - 1 + songData.length) % songData.length
+    );
   };
 
   if (isLoading) {
@@ -131,7 +122,7 @@ const Listen: React.FC = () => {
       <h2 className="p-8">Playing Now:</h2>
       <div>
         <h3 className="title font-righteous text-2xl pb-8">
-          {songs[trackIndex].title}
+          {songData[trackIndex].fileName}
         </h3>
       </div>
 
