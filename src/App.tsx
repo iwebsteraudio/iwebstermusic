@@ -5,7 +5,7 @@ import Home from "./Components/Home";
 import Header from "./Components/Header";
 import Nav from "./Components/Nav";
 import Footer from "./Components/Footer";
-import Listen from "./Components/Listen";
+import Listen from "./Components/Listen/Listen";
 
 import Contact from "./Components/Contact";
 import SetList from "./Components/SetList";
@@ -38,6 +38,6 @@ const App: React.FC = () => {
       </div>
     </div>
   );
-}
+};
 
 export default App;

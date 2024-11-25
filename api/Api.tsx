@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import YtApiKey from "./YoutubeApiKey";
 
 interface YouTubeVideo {
@@ -22,7 +22,7 @@ interface YouTubeResponse {
 }
 
 // const storedUser = localStorage.getItem("user");
-const BASE_URL = "http://localhost:9090/api";
+const BASE_URL = "https://iwebstermusic-be.onrender.com/api";
 const ONE_HOUR = 60 * 60 * 1000;
 let cachedYoutubeData: YouTubeVideo[] = [];
 let lastFetchTime: number = 0;
@@ -89,6 +89,22 @@ export const postEmail = async (formData: {}) => {
     return response;
   } catch (err) {
     console.error(err);
+    throw err;
+  }
+};
+
+export const postEmailWithRetry = async (
+  formData: {},
+  attempts = 3
+): Promise<AxiosResponse> => {
+  try {
+    const response = await postEmail(formData);
+    return response;
+  } catch (err) {
+    if (attempts > 0) {
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      return postEmailWithRetry(formData, attempts - 1);
+    }
     throw err;
   }
 };

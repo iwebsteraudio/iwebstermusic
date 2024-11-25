@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { postEmail } from "../../api/Api.tsx";
+import { postEmailWithRetry } from "../../api/Api.tsx";
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +15,7 @@ const Contact: React.FC = () => {
   const [errors, setErrors] = useState({
     contactNumber: "",
   });
-
+ 
   const phoneNumberRegex = /^\+?(\d{10,13})$/;
 
   const handleChange = (
@@ -39,7 +39,7 @@ const Contact: React.FC = () => {
 
     setErrors({ ...errors, contactNumber: "" });
     try {
-      const response = await postEmail(formData);
+      const response = await postEmailWithRetry(formData);
       if (response.data) {
         setStatus("Email sent successfully!");
       } else {
@@ -67,6 +67,8 @@ const Contact: React.FC = () => {
         <h3 className="text-3xl font-extrabold italic text-center mb-6">
           GET IN TOUCH, TODAY.
         </h3>
+
+        <div className="text-red-500">{status && <p>{status}</p>}</div>
 
         <div className="grid grid-cols-2 gap-4 mb-8">
           <input
