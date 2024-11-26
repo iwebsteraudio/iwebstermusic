@@ -6,8 +6,8 @@ interface Song {
   song_id: string;
   title: string;
   decade: string;
+  artist: string;
   genre: string;
-  path: string;
 }
 
 const SetList: React.FC = () => {
