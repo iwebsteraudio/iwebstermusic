@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 YoutubeApiKey.tsx
 assets/songs
-.env
+*.env
