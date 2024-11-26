@@ -51,7 +51,7 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
       sound?.seek(seconds);
       play();
     }
-  }, [songPath, sound, seconds, isPlaying, play, stop]);
+  }, [songPath, sound, isPlaying, play, stop]);
 
   // Update current time each second while the track plays
   useEffect(() => {
