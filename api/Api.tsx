@@ -25,7 +25,7 @@ const BASE_URL = "https://iwebstermusic-be.onrender.com/api";
 const ONE_HOUR = 60 * 60 * 1000;
 let cachedYoutubeData: YouTubeVideo[] = [];
 let lastFetchTime: number = 0;
-const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
+const apiKey = import.meta.env.VITE_REACT_APP_YOUTUBE_API_KEY;
 const channelId = "UClTznGqvKRFrVO8ZPhHtiCg";
 
 export const fetchYouTube = async (): Promise<YouTubeVideo[]> => {
