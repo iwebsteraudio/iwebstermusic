@@ -2,9 +2,11 @@ import React from "react";
 
 interface TimeDisplayProps {
   currTime: { min: string; sec: string };
-  totalTime: { min: string; sec: string };
+  totalTime: number;
   seconds: number;
-  onSeek: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSeek: (value: number) => void;
+  onSeekStart: () => void;
+  onSeekEnd: () => void;
 }
 
 const TimeDisplay: React.FC<TimeDisplayProps> = ({
@@ -12,20 +14,27 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
   totalTime,
   seconds,
   onSeek,
+  onSeekStart,
+  onSeekEnd,
 }) => {
+  
   return (
     <div>
       <p>
-        {currTime.min}:{currTime.sec} / {totalTime.min}:{totalTime.sec}
+        {currTime.min}:{currTime.sec} /{" "}
+        {String(Math.floor(totalTime / 60)).padStart(2, "0")}:
+        {String(Math.floor(totalTime % 60)).padStart(2, "0")}
       </p>
 
       <input
         type="range"
         min="0"
-        max={seconds || 0}
+        max={Math.floor(totalTime)}
         value={seconds || 0}
-        className="timeline"
-        onChange={onSeek}
+        className="timeline w-1/2"
+        onMouseDown={onSeekStart}
+        onMouseUp={onSeekEnd}
+        onChange={(e) => onSeek(Number(e.target.value))}
       />
     </div>
   );

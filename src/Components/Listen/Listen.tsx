@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { fetchMp3s } from "../../../api/Api";
-import SongList from "./SongList";
 import PlayerComponent from "./PlayerComponent";
 
 interface Song {
@@ -31,10 +30,6 @@ const Listen: React.FC = () => {
 
     fetchSongs();
   }, []);
-
-  const handleSongSelect = (index: number) => {
-    setTrackIndex(index);
-  };
 
   if (isLoading) {
     return (
@@ -67,11 +62,7 @@ const Listen: React.FC = () => {
           trackIndex={trackIndex}
           setTrackIndex={setTrackIndex}
         />
-        <SongList
-          songData={songData}
-          trackIndex={trackIndex}
-          onSongSelect={handleSongSelect}
-        />
+      
       </div>
     </div>
   );
