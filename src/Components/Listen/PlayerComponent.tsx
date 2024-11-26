@@ -47,12 +47,11 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
 
   useEffect(() => {
     if (isPlaying) {
-      stop();
-      sound?.seek(seconds);
+      sound?.seek(0);
       play();
     }
   }, [songPath, sound, isPlaying, play, stop]);
-
+  
   // Update current time each second while the track plays
   useEffect(() => {
     if (!sound || seeking) return;
@@ -72,6 +71,12 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
     return () => clearInterval(interval);
   }, [sound, seeking]);
 
+  useEffect(() => {
+    return () => {
+      stop();
+    };
+  }, [stop]);
+  
   const playingButton = () => {
     if (isPlaying) {
       pause();
@@ -98,7 +103,9 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
   };
 
   const handleSeekStart = () => {
+    stop()
     setSeeking(true);
+    play()
   };
 
   const handleSeekEnd = () => {
