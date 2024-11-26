@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import YtApiKey from "./YoutubeApiKey";
+
 
 interface YouTubeVideo {
   id: {
@@ -21,7 +21,6 @@ interface YouTubeResponse {
   items: YouTubeVideo[];
 }
 
-// const storedUser = localStorage.getItem("user");
 const BASE_URL = "https://iwebstermusic-be.onrender.com/api";
 const ONE_HOUR = 60 * 60 * 1000;
 let cachedYoutubeData: YouTubeVideo[] = [];
