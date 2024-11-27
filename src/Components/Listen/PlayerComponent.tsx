@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import PlayerControls from "./PlayerControls";
 import TimeDisplay from "./TimeDisplay";
 import useSound from "use-sound";
@@ -45,13 +45,6 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
 
   const durationInSeconds = duration ? duration / 1000 : 0;
 
-  useEffect(() => {
-    if (isPlaying) {
-      sound?.seek(0);
-      play();
-    }
-  }, [songPath, sound, isPlaying, play, stop]);
-  
   // Update current time each second while the track plays
   useEffect(() => {
     if (!sound || seeking) return;
@@ -71,57 +64,68 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
     return () => clearInterval(interval);
   }, [sound, seeking]);
 
+  // Stops on navigation away from listen app
   useEffect(() => {
     return () => {
       stop();
     };
   }, [stop]);
-  
+
+  // PLAY/PAUSE
+
   const playingButton = () => {
     if (isPlaying) {
       pause();
       setIsPlaying(false);
     } else {
-      sound?.seek(seconds);
       play();
       setIsPlaying(true);
     }
   };
 
+  // CHANGING TRACKS
+
+
   const nextTrack = () => {
     stop();
+    setIsPlaying(false);
     setTrackIndex((prevIndex) => (prevIndex + 1) % songData.length);
-    setIsPlaying(true);
+    play()
   };
 
   const prevTrack = () => {
     stop();
+    setIsPlaying(false);
     setTrackIndex(
       (prevIndex) => (prevIndex - 1 + songData.length) % songData.length
     );
-    setIsPlaying(true);
+  
   };
 
+  const handleSongSelect = (index: number) => {
+    stop();
+    setIsPlaying(false);
+    setTrackIndex(index);
+  };
+
+  // SEEK BAR SELECTION
+
   const handleSeekStart = () => {
-    stop()
+    stop();
     setSeeking(true);
-    play()
   };
 
   const handleSeekEnd = () => {
     sound?.seek(seconds);
     setSeeking(false);
+    if (isPlaying) {
+      play();
+    }
   };
 
   const handleSeekChange = (value: number) => {
     setSeconds(value);
     sound?.seek(value);
-  };
-
-  const handleSongSelect = (index: number) => {
-    stop();
-    setTrackIndex(index);
-    setIsPlaying(true);
   };
 
   return (
