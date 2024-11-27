@@ -105,7 +105,6 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
     stop();
     setIsPlaying(false);
     setTrackIndex((prevIndex) => (prevIndex + 1) % songData.length);
-    play();
   };
 
   const prevTrack = () => {
