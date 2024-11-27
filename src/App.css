@@ -113,3 +113,8 @@ html {
 html {
   font-family: 'Mona Sans';
 }
+
+.video-container {
+  max-width: 800px;
+  max-height: 450px;
+}
