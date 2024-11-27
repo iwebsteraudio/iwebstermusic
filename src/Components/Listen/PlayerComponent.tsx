@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import PlayerControls from "./PlayerControls";
 import TimeDisplay from "./TimeDisplay";
 import useSound from "use-sound";
