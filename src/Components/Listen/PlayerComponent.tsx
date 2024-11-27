@@ -3,6 +3,7 @@ import PlayerControls from "./PlayerControls";
 import TimeDisplay from "./TimeDisplay";
 import useSound from "use-sound";
 import SongList from "./SongList";
+import VolumeSlider from "./VolumeSlider";
 
 interface Song {
   fileName: string;
@@ -33,6 +34,7 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
   });
   const [seconds, setSeconds] = useState<number>(0);
   const [seeking, setSeeking] = useState<boolean>(false);
+  const [volume, setVolume] = useState<number>(1);
 
   // Set up useSound
   const [play, { pause, stop, duration, sound }] = useSound(songPath, {
@@ -43,9 +45,17 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
     },
   });
 
-  const durationInSeconds = duration ? duration / 1000 : 0;
+  // UPDATE VOLUME USEEFFECT
+
+  useEffect(() => {
+    if (sound) {
+      sound.volume(volume);
+    }
+  }, [volume, sound]);
 
   // Update current time each second while the track plays
+  const durationInSeconds = duration ? duration / 1000 : 0;
+
   useEffect(() => {
     if (!sound || seeking) return;
 
@@ -83,14 +93,19 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
     }
   };
 
-  // CHANGING TRACKS
+  // VOLUM SLIDER HANDLER
+  const handleVolumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(event.target.value);
+    setVolume(newVolume);
+  };
 
+  // CHANGING TRACKS
 
   const nextTrack = () => {
     stop();
     setIsPlaying(false);
     setTrackIndex((prevIndex) => (prevIndex + 1) % songData.length);
-    play()
+    play();
   };
 
   const prevTrack = () => {
@@ -99,7 +114,6 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
     setTrackIndex(
       (prevIndex) => (prevIndex - 1 + songData.length) % songData.length
     );
-  
   };
 
   const handleSongSelect = (index: number) => {
@@ -154,6 +168,7 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
             trackIndex={trackIndex}
             onSongSelect={handleSongSelect}
           />
+          <VolumeSlider volume={volume} onVolumeChange={handleVolumeChange} />
         </>
       )}
     </>
