@@ -15,7 +15,7 @@ const Contact: React.FC = () => {
   const [errors, setErrors] = useState({
     contactNumber: "",
   });
- 
+
   const phoneNumberRegex = /^\+?(\d{10,13})$/;
 
   const handleChange = (
@@ -58,19 +58,20 @@ const Contact: React.FC = () => {
       message: "",
     });
   };
+
   return (
-    <div className=" shadow-md rounded-md flex items-center justify-center bg-white w-full">
+    <div className="shadow-md rounded-md flex items-center justify-center bg-white w-full p-4 sm:p-6 md:p-8">
       <form
-        className="w-2/3 mb-8 p-8  text-1 font-monaSans "
+        className="w-full sm:w-3/4 md:w-2/3 text-1 font-monaSans"
         onSubmit={handleSubmit}
       >
-        <h3 className="text-3xl font-extrabold italic text-center mb-6">
+        <h3 className="text-2xl sm:text-3xl font-extrabold italic text-center mb-6">
           GET IN TOUCH, TODAY.
         </h3>
 
         <div className="text-red-500">{status && <p>{status}</p>}</div>
 
-        <div className="grid grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           <input
             className="border-b border-gray-300 focus:border-black focus:outline-none transition-all duration-1000 py-2 px-3"
             id="name"
@@ -81,7 +82,7 @@ const Contact: React.FC = () => {
             onChange={handleChange}
             required
           />
-          <div>
+          <div className="flex flex-col">
             <input
               className={`border-b border-gray-300 focus:border-black focus:outline-none transition-all duration-1000 py-2 px-3 ${
                 errors.contactNumber ? "border-red-500" : ""
@@ -108,7 +109,6 @@ const Contact: React.FC = () => {
             onChange={handleChange}
             required
           />
-
           <input
             className="border-b border-gray-300 focus:border-black focus:outline-none transition-all duration-1000 py-2 px-3"
             id="date"
@@ -147,7 +147,7 @@ const Contact: React.FC = () => {
         </div>
 
         <button
-          className="nav-link hover:underline hover:bg-stone-200 rounded px-20 py-4"
+          className="bg-stone-200 hover:bg-stone-300 rounded px-10 py-3 w-full sm:w-auto"
           type="submit"
         >
           Send

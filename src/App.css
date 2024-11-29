@@ -118,3 +118,17 @@ html {
   max-width: 800px;
   max-height: 450px;
 }
+
+.blur-border {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 10px; /* Adjust as needed */
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5); /* Adds the blur effect */
+}
+
+.blur-border img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
