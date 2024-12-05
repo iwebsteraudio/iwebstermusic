@@ -65,7 +65,7 @@ const Contact: React.FC = () => {
         className="w-full sm:w-3/4 md:w-2/3 text-1 font-monaSans"
         onSubmit={handleSubmit}
       >
-        <h3 className="text-2xl sm:text-3xl font-extrabold italic text-center mb-6">
+        <h3 className="text-2xl sm:text-3xl font-extrabold italic text-center m-6">
           GET IN TOUCH, TODAY.
         </h3>
 

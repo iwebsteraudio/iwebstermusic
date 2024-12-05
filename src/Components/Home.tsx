@@ -5,29 +5,30 @@ import Listen from "./Listen/Listen";
 const Home: React.FC = () => {
   return (
     <>
-      <section className="relative flex justify-center items-center w-full">
-        <div className="blur-border w-1/2 h-1/2 mx-5 mb-20">
+
+
+      <div id="listen" className="bg-transparent pt-8">
+        <Listen />
+      </div>
+      <section className="relative flex mt-20 justify-center items-center w-full">
+        <div className="relative w-full sm:w-3/4 md:w-1/2 h-auto sm:h-1/2 mx-5 mb-20">
           <img
             className="object-cover w-full h-full"
             src="/assets/img/MeWithStrat.JPG"
             alt="Ian Webster playing his fender strat at home"
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <h2 className="text-white font-righteous text-4xl font-bold">
+            <h2 className="text-white font-righteous text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
               Ian Webster - Guitarist and Singer
             </h2>
           </div>
         </div>
       </section>
 
-      <div id="listen" className="bg-transparent pt-8">
-        <Listen />
-      </div>
-      <div id="contact" className="mt-20">
         <Contact />
-      </div>
+      
 
-      <section className="shadow-md mt-20 mb-96 p-8 rounded-md text-1 font-monaSans bg-white">
+      <section className="shadow-md m-20 p-8 rounded-md text-1 font-monaSans bg-white">
         <h3 className="font-extrabold">CREATE THE SOUNDTRACK TO YOUR EVENT</h3>
         <p className="font-normal">
           Whether you're hosting a wedding, a birthday or simply a live event at
@@ -42,6 +43,7 @@ const Home: React.FC = () => {
           create a one-man-band!
         </p>
       </section>
+      
     </>
   );
 };
