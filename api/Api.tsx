@@ -125,6 +125,32 @@ export const postNewSongsToSetlistWithRetry = async (
 
 export const postNewSongsToSetlist = async (formData: {}) => {
   try {
+    const response = await axios.post(`${BASE_URL}/add-songs`, formData);
+    return response;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export const postNewSongsToSetlistWithRetry = async (
+  formData: {},
+  attempts = 3
+): Promise<AxiosResponse> => {
+  try {
+    const response = await postNewSongsToSetlist(formData);
+    return response;
+  } catch (err) {
+    if (attempts > 0) {
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      return postNewSongsToSetlistWithRetry(formData, attempts - 1);
+    }
+    throw err;
+  }
+};
+
+export const postNewSongsToSetlist = async (formData: {}) => {
+  try {
     const response = await axios.post(`${BASE_URL}/songs`, formData);
     return response;
   } catch (err) {

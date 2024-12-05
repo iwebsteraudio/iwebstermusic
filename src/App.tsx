@@ -11,6 +11,7 @@ import Contact from "./Components/Contact";
 import SetList from "./Components/SetList";
 import Videos from "./Components/Videos";
 import About from "./Components/About";
+import AddRemoveSongs from "./Components/AddRemoveSongs";
 
 const App: React.FC = () => {
   return (
@@ -36,6 +37,7 @@ const App: React.FC = () => {
             <Route path="/set-list" element={<SetList />} />
             <Route path="/videos" element={<Videos />} />
             <Route path="/about" element={<About />} />
+            <Route path="/add-songs" element={<AddRemoveSongs />} />
           </Routes>
         </main>
         <Footer className="border-gray-500 bg-stone-200 mt-auto p-8 border-t-4" />
