@@ -46,7 +46,7 @@ const Listen: React.FC = () => {
   const songPath = songData[trackIndex]?.url || "";
 
   return (
-<div className="relative isolate rounded-3xl bg-white opacity-90 max-w-3xl mx-auto border-4 text-xs">
+<div className="relative isolate rounded-3xl bg-white opacity-90 max-w-3xl mx-auto border-4 border-indigo-300 text-xs">
 
       <h2 className="p-8">Now Playing:</h2>
       <div>

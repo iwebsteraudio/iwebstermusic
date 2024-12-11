@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchAllSongs } from "../../api/Api";
+import { fetchAllSongs } from "../../../api/Api";
 import SongCard from "./SongCard";
 
 interface Song {
@@ -12,7 +12,7 @@ interface Song {
 
 const SetList: React.FC = () => {
   const [songData, setSongData] = useState([]);
-  const [error, setError] = useState<String | null> (null);
+  const [error, setError] = useState<String | null>(null);
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState<"decade" | "genre">("decade");
 
@@ -23,10 +23,14 @@ const SetList: React.FC = () => {
         const sortedSongs = songs.sort((a: Song, b: Song) =>
           a.decade.localeCompare(b.decade)
         );
-        setSongData(sortedSongs.map((song:{}) => ({ ...song, loading: true })));
+        setSongData(
+          sortedSongs.map((song: {}) => ({ ...song, loading: true }))
+        );
 
         setTimeout(() => {
-          setSongData(sortedSongs.map((song:{}) => ({ ...song, loading: false })));
+          setSongData(
+            sortedSongs.map((song: {}) => ({ ...song, loading: false }))
+          );
           setLoading(false);
         }, 1500);
       } catch (error) {
@@ -57,7 +61,10 @@ const SetList: React.FC = () => {
     setSongData(sortedSongs);
   };
 
-  const groupSongs = (songs: Song[], sortBy: "decade" | "genre"): Record<string, Song[]> => {
+  const groupSongs = (
+    songs: Song[],
+    sortBy: "decade" | "genre"
+  ): Record<string, Song[]> => {
     return songs.reduce((groups: Record<string, Song[]>, song: Song) => {
       const key = song[sortBy];
       if (!groups[key]) {

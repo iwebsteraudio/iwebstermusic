@@ -8,10 +8,10 @@ import Footer from "./Components/Footer";
 import Listen from "./Components/Listen/Listen";
 
 import Contact from "./Components/Contact";
-import SetList from "./Components/SetList";
+import SetList from "./Components/SetList/SetList";
 import Videos from "./Components/Videos";
 import About from "./Components/About";
-import AddRemoveSongs from "./Components/AddRemoveSongs";
+import AddRemoveSongs from "./Components/SetList/AddRemoveSongs";
 
 const App: React.FC = () => {
   return (

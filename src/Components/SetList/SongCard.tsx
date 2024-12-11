@@ -1,5 +1,5 @@
 import React from "react";
-import { RotatingLines } from "react-loader-spinner";
+import { Bars } from "react-loader-spinner";
 
 interface Song {
   song_id: string;
@@ -20,13 +20,15 @@ const SongCard: React.FC<SongCardProps> = ({ song, loading, sortBy }) => {
     <div className="song-container bg-white opacity-90 cd rounded p-2">
       {loading ? (
         <>
-          <RotatingLines
-              strokeColor="grey"
-              strokeWidth="5"
-              animationDuration="0.75"
-              width="32"
-              visible={true}
-            />
+          <Bars
+            height="80"
+            width="80"
+            color="blue"
+            ariaLabel="bars-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
           <span className="sr-only">Loading...</span>
         </>
       ) : (

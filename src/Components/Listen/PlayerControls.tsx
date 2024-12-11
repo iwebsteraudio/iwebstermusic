@@ -2,7 +2,7 @@ import React from "react";
 
 import { PlayCircle, SkipBack, SkipForward, PauseIcon } from "lucide-react";
 
-import { RotatingLines } from "react-loader-spinner";
+import { ThreeDots, Audio } from "react-loader-spinner";
 
 interface PlayerControlsProps {
   isPlaying: boolean;
@@ -24,7 +24,7 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({
   return (
     <div className="flex items-center justify-evenly text-xs">
       <button
-        className="playButton hover:bg-stone-200 rounded-lg p-8"
+        className="playButton bg-indigo-50 hover:bg-indigo-200 rounded-lg p-8 border-2 border-indigo-300"
         onClick={prevTrack}
         disabled={disabled}
       >
@@ -34,7 +34,7 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({
       {!isPlaying ? (
         sound ? (
           <button
-            className="playButton hover:bg-stone-200 rounded-lg p-8"
+            className="playButton bg-indigo-50 hover:bg-indigo-200 rounded-lg p-8 border-2 border-indigo-300"
             onClick={onPlayPause}
             disabled={disabled}
           >
@@ -43,31 +43,44 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({
           </button>
         ) : (
           <button
-            className="playButton hover:bg-stone-200 rounded-lg p-8"
+            className="playButton bg-indigo-50 hover:bg-indigo-200 rounded-lg p-8"
             disabled={disabled}
           >
-            <RotatingLines
-              strokeColor="grey"
-              strokeWidth="5"
-              animationDuration="0.75"
-              width="64"
+            <ThreeDots
               visible={true}
+              height="100"
+              width="50"
+              color="blue"
+              ariaLabel="three-circles-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
             />
             <span className="sr-only">Loading...</span>
           </button>
         )
       ) : (
         <button
-          className="playButton hover:bg-stone-200 rounded-lg p-8"
+          className="playButton bg-indigo-50 hover:bg-indigo-200 rounded-lg p-8 border-2 border-indigo-300"
           onClick={onPlayPause}
           disabled={disabled}
         >
           <PauseIcon size={60} strokeWidth={1.2} className="mb-2" />
           <span>pause</span>
+          <div className="absolute inset-0 flex justify-center items-center opacity-5 rounded-lg -z-10">
+            <Audio
+              height="500"
+              width="500"
+              color="indigo"
+              ariaLabel="audio-playing-animation"
+              wrapperStyle={{}}
+              wrapperClass="wrapper-class"
+              visible={true}
+            />
+          </div>
         </button>
       )}
       <button
-        className="playButton hover:bg-stone-200 rounded-lg p-8"
+        className="playButton bg-indigo-50 hover:bg-indigo-200 rounded-lg p-8 border-2 border-indigo-300"
         onClick={nextTrack}
         disabled={disabled}
       >
