@@ -18,7 +18,7 @@ const SongList: React.FC<SongListProps> = ({
 }) => {
   return (
     <div className="flex justify-center font-righteous items-center w-full p-8">
-      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
         {songData.map((song, index) => (
           <li
             key={song.fileName}

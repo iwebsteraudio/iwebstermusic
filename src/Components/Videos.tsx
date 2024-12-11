@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { fetchYouTube } from "../../api/Api";
-import Slider from "react-slick";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type VideoElementProps = {
   id: string;
 };
+
 const VideoElement: React.FC<VideoElementProps> = ({ id }) => {
   return (
-    <div className="relative pb-[56.25%] m-10 h-0 overflow-hidden mx-auto video-container">
+    <div className="relative pb-[56.25%] m-8">
       <iframe
-        className="rounded-lg absolute top-0 left-0 w-full h-full"
+        className="rounded-lg absolute top-0 left-0 border-2 w-full h-full border-violet-300"
         src={`https://www.youtube.com/embed/${id}`}
-        frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         title={id}
@@ -20,44 +18,6 @@ const VideoElement: React.FC<VideoElementProps> = ({ id }) => {
     </div>
   );
 };
-
-const CustomPrevArrow = ({ onClick }: { onClick: () => void }) => (
-  <button
-    onClick={onClick}
-    className="custom-arrow custom-prev-arrow"
-    style={{
-      position: 'absolute',
-      top: '50%',
-      left: '10px',
-      transform: 'translateY(-50%)',
-      backgroundColor: 'transparent',
-      border: 'none',
-      cursor: 'pointer',
-      zIndex: 10,
-    }}
-  >
-    <ChevronLeft size={90} color="white" />
-  </button>
-);
-
-const CustomNextArrow = ({ onClick }: { onClick: () => void }) => (
-  <button
-    onClick={onClick}
-    className="custom-arrow custom-next-arrow"
-    style={{
-      position: 'absolute',
-      top: '50%',
-      right: '10px',
-      transform: 'translateY(-50%)',
-      backgroundColor: 'transparent',
-      border: 'none',
-      cursor: 'pointer',
-      zIndex: 10,
-    }}
-  >
-    <ChevronRight size={90} color="white"/>
-  </button>
-);
 
 const Videos: React.FC = () => {
   const [videoData, setVideoData] = useState<string[]>([]);
@@ -81,26 +41,14 @@ const Videos: React.FC = () => {
     return data.map((item: any) => item.id.videoId);
   };
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    prevArrow: <CustomPrevArrow onClick={() => {}} />,
-    nextArrow: <CustomNextArrow onClick={() => {}} />,
-  };
-
   return (
     <div className="relative">
       {err && <p className="text-red-500">{err}</p>}
       {videoData.length > 0 ? (
-        <div className="flex justify-center relative">
-          <Slider {...settings} className="w-[80%]">
-            {videoData.map((videoId: string, idx: number) => (
-              <VideoElement key={idx} id={videoId} />
-            ))}
-          </Slider>
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {videoData.map((videoId: string, idx: number) => (
+            <VideoElement key={idx} id={videoId} />
+          ))}
         </div>
       ) : (
         !err && <p>Loading videos...</p>

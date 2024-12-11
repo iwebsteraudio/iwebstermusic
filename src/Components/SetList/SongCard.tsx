@@ -21,8 +21,8 @@ const SongCard: React.FC<SongCardProps> = ({ song, loading, sortBy }) => {
       {loading ? (
         <>
           <Bars
-            height="80"
-            width="80"
+            height="20"
+            width="20"
             color="blue"
             ariaLabel="bars-loading"
             wrapperStyle={{}}
