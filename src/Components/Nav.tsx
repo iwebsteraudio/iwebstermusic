@@ -5,9 +5,6 @@ import { Menu, X } from "lucide-react";
 const NavLinks: React.FC  = () => {
   return (
     <>
-      {/* <NavLink to="/login" className={"nav-link hover:underline  rounded px-4 py-2"}>
-        Login
-      </NavLink> */}
       <NavLink to="/" className={"nav-link hover:underline  border-2 border-indigo-300 bg-violet-50 hover:bg-indigo-300   rounded px-40 py-2"}>
       Home
       </NavLink>

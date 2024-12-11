@@ -11,10 +11,11 @@ import Contact from "./Components/Contact";
 import SetList from "./Components/SetList/SetList";
 import Videos from "./Components/Videos";
 import About from "./Components/About";
-import AddRemoveSongs from "./Components/SetList/AddRemoveSongs";
+import EventListenerSpiking from "./Components/SetList/EventListenerSpiking";
 
 const App: React.FC = () => {
   return (
+    <section>
     <div className="relative min-h-screen w-full">
       {/* Background image */}
       <div
@@ -37,12 +38,13 @@ const App: React.FC = () => {
             <Route path="/set-list" element={<SetList />} />
             <Route path="/videos" element={<Videos />} />
             <Route path="/about" element={<About />} />
-            <Route path="/add-songs" element={<AddRemoveSongs />} />
+            <Route path="/Event" element= {<EventListenerSpiking />} />
           </Routes>
         </main>
         <Footer className="border-gray-500 bg-stone-200 mt-auto p-8 border-t-4" />
       </div>
     </div>
+    </section>
   );
 };
 
