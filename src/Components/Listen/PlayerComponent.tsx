@@ -148,6 +148,7 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
             onPlayPause={playingButton}
             nextTrack={nextTrack}
             prevTrack={prevTrack}
+            sound={sound}
             disabled={!sound}
           />
           <TimeDisplay

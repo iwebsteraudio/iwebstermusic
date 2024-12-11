@@ -2,12 +2,15 @@ import React from "react";
 
 import { PlayCircle, SkipBack, SkipForward, PauseIcon } from "lucide-react";
 
+import { RotatingLines } from "react-loader-spinner";
+
 interface PlayerControlsProps {
   isPlaying: boolean;
   onPlayPause: () => void;
   nextTrack: () => void;
   prevTrack: () => void;
   disabled: boolean;
+  sound: boolean;
 }
 
 const PlayerControls: React.FC<PlayerControlsProps> = ({
@@ -16,6 +19,7 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({
   nextTrack,
   prevTrack,
   disabled,
+  sound,
 }) => {
   return (
     <div className="flex items-center justify-evenly text-xs">
@@ -28,14 +32,30 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({
         <span>prev</span>
       </button>
       {!isPlaying ? (
-        <button
-          className="playButton hover:bg-stone-200 rounded-lg p-8"
-          onClick={onPlayPause}
-          disabled={disabled}
-        >
-          <PlayCircle size={60} strokeWidth={1.2} className="mb-2" />
-          <span>play</span>
-        </button>
+        sound ? (
+          <button
+            className="playButton hover:bg-stone-200 rounded-lg p-8"
+            onClick={onPlayPause}
+            disabled={disabled}
+          >
+            <PlayCircle size={60} strokeWidth={1.2} className="mb-2" />
+            <span>play</span>
+          </button>
+        ) : (
+          <button
+            className="playButton hover:bg-stone-200 rounded-lg p-8"
+            disabled={disabled}
+          >
+            <RotatingLines
+              strokeColor="grey"
+              strokeWidth="5"
+              animationDuration="0.75"
+              width="64"
+              visible={true}
+            />
+            <span className="sr-only">Loading...</span>
+          </button>
+        )
       ) : (
         <button
           className="playButton hover:bg-stone-200 rounded-lg p-8"
