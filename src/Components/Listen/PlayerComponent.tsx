@@ -141,11 +141,7 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
     sound?.seek(value);
   };
 
-  return (
-    <>
-      {!sound ? (
-        <p>Initializing Web Player</p>
-      ) : (
+  return (      
         <>
           <PlayerControls
             isPlaying={isPlaying}
@@ -169,8 +165,6 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
           />
           <VolumeSlider volume={volume} onVolumeChange={handleVolumeChange} />
         </>
-      )}
-    </>
   );
 };
 
