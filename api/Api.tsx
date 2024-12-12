@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { Song } from "utils/types";
 
 interface YouTubeVideo {
   id: {
@@ -127,6 +128,33 @@ export const postNewSongsToSetlist = async (formData: {}) => {
   try {
     const response = await axios.post(`${BASE_URL}/songs`, formData);
     return response;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export const deleteSongFromSetlist = async (songData: { song_id: number }) => {
+  const { song_id } = songData;
+  try {
+    const response = await axios.delete(`${BASE_URL}/songs/${song_id}`);
+    return response;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export const patchSong = async (
+  song_id: number,
+  songData: Partial<Song>
+): Promise<Song> => {
+  try {
+    const response = await axios.patch(
+      `${BASE_URL}/songs/${song_id}`,
+      songData
+    );
+    return response.data;
   } catch (err) {
     console.error(err);
     throw err;

@@ -4,18 +4,14 @@ import TimeDisplay from "./TimeDisplay";
 import useSound from "use-sound";
 import SongList from "./SongList";
 import VolumeSlider from "./VolumeSlider";
-
-interface Song {
-  fileName: string;
-  url: string;
-}
+import { SongMp3 } from "utils/types";
 
 interface PlayerComponentProps {
   songPath: string;
   onEnd: () => void;
   isPlaying: boolean;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
-  songData: Song[];
+  songData: SongMp3[];
   trackIndex: number;
   setTrackIndex: React.Dispatch<React.SetStateAction<number>>;
 }

@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { fetchMp3s } from "../../../api/Api";
 import PlayerComponent from "./PlayerComponent";
+import { SongMp3 } from "utils/types"
 
-interface Song {
-  fileName: string;
-  url: string;
-}
 
 const Listen: React.FC = () => {
-  const [songData, setSongData] = useState<Song[]>([]);
+  const [songData, setSongData] = useState<SongMp3[]>([]);
   const [err, setErr] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [trackIndex, setTrackIndex] = useState<number>(0);

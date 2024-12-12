@@ -1,12 +1,8 @@
 import React from "react";
-
-interface Song {
-  fileName: string;
-  url: string;
-}
+import { SongMp3 } from "utils/types";
 
 interface SongListProps {
-  songData: Song[];
+  songData: SongMp3[];
   trackIndex: number;
   onSongSelect: (index: number) => void;
 }

@@ -69,7 +69,7 @@ const Contact: React.FC = () => {
           GET IN TOUCH, TODAY.
         </h3>
 
-        <div className="text-red-500">{status && <p>{status}</p>}</div>
+        
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           <input
@@ -152,6 +152,7 @@ const Contact: React.FC = () => {
         >
           Send
         </button>
+        <div className="text-red-500">{status && <p>{status}</p>}</div>
       </form>
     </div>
   );
