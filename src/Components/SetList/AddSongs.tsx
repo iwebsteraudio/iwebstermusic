@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { postNewSongsToSetlistWithRetry } from "../../../api/Api";
 import { Song } from "utils/types";
-import { v4 as uuidv4 } from "uuid";
 
 interface AddSongsProps {
   songData: Song[];
   setSongData: React.Dispatch<React.SetStateAction<Song[]>>;
 }
 
-const AddSongs: React.FC<AddSongsProps> = ({ songData, setSongData }) => {
+const AddSongs: React.FC<AddSongsProps> = ({ setSongData }) => {
   const [formData, setFormData] = useState({
     artist: "",
     title: "",
@@ -18,7 +17,9 @@ const AddSongs: React.FC<AddSongsProps> = ({ songData, setSongData }) => {
   const [status, setStatus] = useState<string>("");
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
   ) => {
     setFormData({
       ...formData,
@@ -30,7 +31,7 @@ const AddSongs: React.FC<AddSongsProps> = ({ songData, setSongData }) => {
     event.preventDefault();
 
     const tempSong: Song = {
-      song_id: uuidv4(),
+      song_id: Math.floor(Math.random() * 1000000),
       ...formData,
     };
 
@@ -104,18 +105,20 @@ const AddSongs: React.FC<AddSongsProps> = ({ songData, setSongData }) => {
             name="decade"
             value={formData.decade}
             onChange={handleChange}
-            required>
-              <option value="" disabled>What Decade?</option>
-              <option value="1950">1950's</option>
-              <option value="1960">1960's</option>
-              <option value="1970">1970's</option>
-              <option value="1980">1980's</option>
-              <option value="1990">1990's</option>
-              <option value="2000">2000's</option>
-              <option value="2010">2010's</option>
-              <option value="2020">2020's</option>
-            </select>
-
+            required
+          >
+            <option value="" disabled>
+              What Decade?
+            </option>
+            <option value="1950">1950's</option>
+            <option value="1960">1960's</option>
+            <option value="1970">1970's</option>
+            <option value="1980">1980's</option>
+            <option value="1990">1990's</option>
+            <option value="2000">2000's</option>
+            <option value="2010">2010's</option>
+            <option value="2020">2020's</option>
+          </select>
         </div>
 
         <button
