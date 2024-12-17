@@ -110,23 +110,27 @@ export const postEmailWithRetry = async (
 
 export const postNewSongsToSetlistWithRetry = async (
   formData: {},
+  password: string,
   attempts = 3
 ): Promise<AxiosResponse> => {
   try {
-    const response = await postNewSongsToSetlist(formData);
+    const response = await postNewSongsToSetlist(formData, password);
     return response;
   } catch (err) {
     if (attempts > 0) {
       await new Promise((resolve) => setTimeout(resolve, 3000));
-      return postNewSongsToSetlistWithRetry(formData, attempts - 1);
+      return postNewSongsToSetlistWithRetry(formData, password, attempts - 1);
     }
     throw err;
   }
 };
 
-export const postNewSongsToSetlist = async (formData: {}) => {
+export const postNewSongsToSetlist = async (formData: {}, password: string) => {
   try {
-    const response = await axios.post(`${BASE_URL}/songs`, formData);
+    const response = await axios.post(`${BASE_URL}/songs`, formData, {
+      headers: { Authorization: password },
+    });
+    
     return response;
   } catch (err) {
     console.error(err);
@@ -134,10 +138,15 @@ export const postNewSongsToSetlist = async (formData: {}) => {
   }
 };
 
-export const deleteSongFromSetlist = async (songData: { song_id: number }) => {
+export const deleteSongFromSetlist = async (
+  songData: { song_id: number },
+  password: string
+) => {
   const { song_id } = songData;
   try {
-    const response = await axios.delete(`${BASE_URL}/songs/${song_id}`);
+    const response = await axios.delete(`${BASE_URL}/songs/${song_id}`, {
+      headers: { Authorization: password },
+    });
     return response;
   } catch (err) {
     console.error(err);
@@ -147,12 +156,14 @@ export const deleteSongFromSetlist = async (songData: { song_id: number }) => {
 
 export const patchSong = async (
   song_id: number,
-  songData: Partial<Song>
+  songData: Partial<Song>,
+  password: string | null
 ): Promise<Song> => {
   try {
     const response = await axios.patch(
       `${BASE_URL}/songs/${song_id}`,
-      songData
+      songData,
+      { headers: { Authorization: password } }
     );
     return response.data;
   } catch (err) {

@@ -5,9 +5,15 @@ import { Song } from "utils/types";
 interface AddSongsProps {
   songData: Song[];
   setSongData: React.Dispatch<React.SetStateAction<Song[]>>;
+  error: string | null;
+  setError: (err: string | null) => void;
 }
 
-const AddSongs: React.FC<AddSongsProps> = ({ setSongData }) => {
+const AddSongs: React.FC<AddSongsProps> = ({
+  setSongData,
+  error,
+  setError,
+}) => {
   const [formData, setFormData] = useState({
     artist: "",
     title: "",
@@ -29,6 +35,11 @@ const AddSongs: React.FC<AddSongsProps> = ({ setSongData }) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const password = window.prompt("Please enter the password to proceed:");
+    if (!password) {
+      setError("Password is required to submit changes");
+      return;
+    }
 
     const tempSong: Song = {
       song_id: Math.floor(Math.random() * 1000000),
@@ -38,7 +49,7 @@ const AddSongs: React.FC<AddSongsProps> = ({ setSongData }) => {
     setSongData((prevSongs) => [...prevSongs, tempSong]);
 
     try {
-      const response = await postNewSongsToSetlistWithRetry(formData);
+      const response = await postNewSongsToSetlistWithRetry(formData, password);
       if (response.data) {
         setStatus("Song Posted Successfully!");
       } else {
@@ -128,6 +139,7 @@ const AddSongs: React.FC<AddSongsProps> = ({ setSongData }) => {
           Send
         </button>
         <div className="text-red-500">{status && <p>{status}</p>}</div>
+        <div className="text-red-500">{error && <p>{error}</p>}</div>
       </form>
     </div>
   );

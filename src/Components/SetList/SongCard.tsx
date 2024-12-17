@@ -33,11 +33,16 @@ const SongCard: React.FC<SongCardProps> = ({
 
   const handleDelete = async () => {
     const updatedSongList = songData.filter((s) => s.song_id !== song.song_id);
+    const password = window.prompt("Please enter the password to proceed:");
+    if (!password) {
+      setError("Password is required to submit changes");
+      return;
+    }
 
     setSongData(updatedSongList);
 
     try {
-      await deleteSongFromSetlist(song);
+      await deleteSongFromSetlist(song, password);
     } catch (error) {
       console.error("Failed to delete song", error);
       setSongData(songData);
@@ -47,8 +52,9 @@ const SongCard: React.FC<SongCardProps> = ({
 
   const handleEditSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const password = window.prompt("Please enter the password to proceed:");
     try {
-      const updatedSong = await patchSong(song.song_id, formData);
+      const updatedSong = await patchSong(song.song_id, formData, password);
       const updatedSongList = songData.map((s) =>
         s.song_id === song.song_id ? updatedSong : s
       );
@@ -127,9 +133,8 @@ const SongCard: React.FC<SongCardProps> = ({
           >
             Cancel
           </button>
-
         </form>
-      ) :  (
+      ) : (
         <>
           <h2 className="text-m font-semibold border-b mb-1">{song.title}</h2>
           <p className="text-sm text-gray-700 border-b pb-1">

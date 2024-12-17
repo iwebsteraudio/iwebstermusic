@@ -35,6 +35,7 @@ const SetList: React.FC = () => {
 
   let konamiCodePosition = 0;
 
+
   useEffect(() => {
     const fetchSongs = async () => {
       try {
@@ -70,6 +71,7 @@ const SetList: React.FC = () => {
 
         if (konamiCodePosition === konamiCode.length) {
           setIsEditMode(true);
+          console.log("You have entered edit mode. Please note, database is password protected")
           konamiCodePosition = 0;
         }
       } else {
@@ -118,7 +120,18 @@ const SetList: React.FC = () => {
   };
 
   if (error) {
-    return <p>{error}</p>;
+    return (
+      <div className="text-white-500">
+        <p>{error}</p>
+        <a 
+          href="#"
+          onClick={() => window.location.reload()}
+          className="text-blue-500 underline"
+        >
+          Reload Page
+        </a>
+      </div>
+    );
   }
 
   const groupedSongs = groupSongs(songData, sortBy);
@@ -128,6 +141,8 @@ const SetList: React.FC = () => {
       {isEditMode && ( <AddSongs
       songData={songData}
       setSongData={setSongData}
+      error={error}
+      setError={setError}
       />)}
       <div className="pt-4">
         <label className="text-white" htmlFor="sort">
