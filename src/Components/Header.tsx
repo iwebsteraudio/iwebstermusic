@@ -5,7 +5,7 @@ import { SocialIcon } from "react-social-icons";
 
 const Header: React.FC = () => {
   return (
-    <header className="relative bg-stone-200 z-40 flex items-center justify-center border-b-4 border-gray-950 p-8">
+    <header className="relative bg-stone-200 z-40 flex flex-col md:flex-row items-center md:justify-center border-b-4 border-gray-950 p-8">
       {/* Animation in the background */}
       <div className="absolute inset-0 flex justify-center items-center opacity-5 -z-10">
         <Audio
@@ -28,7 +28,7 @@ const Header: React.FC = () => {
         </h2>
       </div>
       {/* Instagram Link */}
-      <div className="absolute right-8 z-10">
+      <div className="mt-4 md:mt-0 md:absolute md:right-8 z-10">
         <SocialIcon url="http://www.instagram.com/iwebstermusic" />
       </div>
     </header>

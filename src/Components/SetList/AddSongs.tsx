@@ -46,12 +46,12 @@ const AddSongs: React.FC<AddSongsProps> = ({
       ...formData,
     };
 
-    setSongData((prevSongs) => [...prevSongs, tempSong]);
-
+    
     try {
       const response = await postNewSongsToSetlistWithRetry(formData, password);
       if (response.data) {
         setStatus("Song Posted Successfully!");
+        setSongData((prevSongs) => [...prevSongs, tempSong]);
       } else {
         setStatus(`Error: ${response.data.message}`);
       }
@@ -65,6 +65,8 @@ const AddSongs: React.FC<AddSongsProps> = ({
       genre: "",
       decade: "",
     });
+
+    setError(null);
   };
 
   return (
