@@ -60,7 +60,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="shadow-md rounded-md flex items-center justify-center bg-white w-full p-4 sm:p-6 md:p-8">
+    <div className="shadow-md rounded-md flex items-center justify-center bg-white border-4 border-indigo-400 w-full p-4 sm:p-6 md:p-8">
       <form
         className="w-full sm:w-3/4 md:w-2/3 text-1 font-monaSans"
         onSubmit={handleSubmit}
