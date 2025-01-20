@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { fetchAllSongs } from "../../../api/Api";
 import SongCard from "./SongCard";
 import AddSongs from "./AddSongs";
 import { Song } from "utils/types";
+import { konamiCodeListener, tapListener } from "../../../utils/eventListeners";
 
 const allowedKeys: Record<number, string> = {
   37: "left",
@@ -32,8 +33,7 @@ const SetList: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState<"decade" | "genre">("decade");
   const [isEditMode, setIsEditMode] = useState(false);
-
-  let konamiCodePosition = 0;
+  const tapButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -61,28 +61,26 @@ const SetList: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const key = allowedKeys[e.keyCode];
-      const requiredKey = konamiCode[konamiCodePosition];
+    const konamiListener = konamiCodeListener(allowedKeys, konamiCode, () => {
+      console.log("Konami Code Activated!");
+      setIsEditMode(true);
+    });
 
-      if (key === requiredKey) {
-        konamiCodePosition++;
+    const tapListenerInstance = tapListener(13, () => {
+      console.log("Tapped 13 times!");
+      setIsEditMode(true);
+    });
 
-        if (konamiCodePosition === konamiCode.length) {
-          setIsEditMode(true);
-          console.log(
-            "You have entered edit mode. Please note, database is password protected"
-          );
-          konamiCodePosition = 0;
-        }
-      } else {
-        konamiCodePosition = 0;
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
+    konamiListener.attach();
+    if (tapButtonRef.current) {
+      tapListenerInstance.attach(tapButtonRef.current);
+    }
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      konamiListener.detach();
+      if (tapButtonRef.current) {
+        tapListenerInstance.detach(tapButtonRef.current);
+      }
     };
   }, []);
 
@@ -185,6 +183,10 @@ const SetList: React.FC = () => {
           </div>
         ))}
       </div>
+      <button
+      ref={tapButtonRef}
+      className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-transparent w-20 h-20 rounded-full opacity-0 hover:opacity-100 hover:bg-gray-800 hover:bg-opacity-20 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+      ></button>
     </>
   );
 };

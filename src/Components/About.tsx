@@ -9,16 +9,14 @@ const About = () => {
           <p className="pb-4 ">
             Hello! I'm &nbsp;
             <b>Ian Webster,</b>
-            &nbsp; an acoustic guitarist and singer based in Greater Manchester.
+            &nbsp; a guitarist and singer based in Greater Manchester.
             I'm available for weddings and events across the UK.
           </p>
           <p className="pb-4">
-            My repertoire is extensive and constantly growing. I'm comfortable
-            playing the classics and crowd-pleasers but I love to learn the
-            songs that most performers don't, and get to those songs that
-            everyone knows and can sign along to but few performers go near.
+            My repertoire is extensive and constantly growing. As well as all the classics, like
+            Mr Brightside and Wonderwall, I can bring to life some of those older songs that people love
+            but never hear.
           </p>
-
           <p className="p-4">
             I moved out from Middlesbrough in 2010 with a dream to come to
             Manchester and play music.&nbsp; Since moving, I've learned to sing,
