@@ -16,7 +16,7 @@ const NavLinks: React.FC = () => {
       <NavLink
         to="/videos"
         className={
-          "nav-link hover:underline border-2 border-indigo-300 bg-violet-50 hover:bg-indigo-300  rounded px-40 py-2 text-center"
+          "nav-link hover:underline  border-2 border-indigo-300 bg-violet-50 hover:bg-indigo-300   rounded px-40 py-2 text-center"
         }
       >
         Videos
@@ -24,7 +24,7 @@ const NavLinks: React.FC = () => {
       <NavLink
         to="/set-list"
         className={
-          "nav-link hover:underline border-2 border-indigo-300 bg-violet-50 hover:bg-indigo-300  rounded px-40 py-2 text-center"
+          "nav-link hover:underline  border-2 border-indigo-300 bg-violet-50 hover:bg-indigo-300   rounded px-40 py-2 text-center"
         }
       >
         SetList
@@ -32,7 +32,7 @@ const NavLinks: React.FC = () => {
       <NavLink
         to="/about "
         className={
-          "nav-link hover:underline border-2 border-indigo-300 bg-violet-50 hover:bg-indigo-300 rounded px-40 py-2 text-center"
+          "nav-link hover:underline  border-2 border-indigo-300 bg-violet-50 hover:bg-indigo-300   rounded px-40 py-2 text-center"
         }
       >
         About
