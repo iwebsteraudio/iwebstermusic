@@ -2,19 +2,39 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
-const NavLinks: React.FC  = () => {
+const NavLinks: React.FC = () => {
   return (
     <>
-      <NavLink to="/" className={"nav-link hover:underline  border-2 border-indigo-300 bg-violet-50 hover:bg-indigo-300   rounded px-40 py-2"}>
-      Home
+      <NavLink
+        to="/"
+        className={
+          "nav-link hover:underline  border-2 border-indigo-300 bg-violet-50 hover:bg-indigo-300   rounded px-40 py-2 text-center"
+        }
+      >
+        Home
       </NavLink>
-      <NavLink to="/videos" className={"nav-link hover:underline border-2 border-indigo-300 bg-violet-50 hover:bg-indigo-300  rounded px-40 py-2"}>
+      <NavLink
+        to="/videos"
+        className={
+          "nav-link hover:underline border-2 border-indigo-300 bg-violet-50 hover:bg-indigo-300  rounded px-40 py-2 text-center"
+        }
+      >
         Videos
       </NavLink>
-      <NavLink to="/set-list" className={"nav-link hover:underline border-2 border-indigo-300 bg-violet-50 hover:bg-indigo-300  rounded px-40 py-2"}>
+      <NavLink
+        to="/set-list"
+        className={
+          "nav-link hover:underline border-2 border-indigo-300 bg-violet-50 hover:bg-indigo-300  rounded px-40 py-2 text-center"
+        }
+      >
         SetList
       </NavLink>
-      <NavLink to="/about " className={"nav-link hover:underline border-2 border-indigo-300 bg-violet-50 hover:bg-indigo-300 rounded px-40 py-2"}>
+      <NavLink
+        to="/about "
+        className={
+          "nav-link hover:underline border-2 border-indigo-300 bg-violet-50 hover:bg-indigo-300 rounded px-40 py-2 text-center"
+        }
+      >
         About
       </NavLink>
     </>
@@ -37,7 +57,7 @@ const Nav = () => {
           {isOpen ? <X /> : <Menu />}
         </button>
         {isOpen && (
-          <div className="flex flex-col border-t border-gray-500 p-2">
+          <div className="flex flex-col justify-center border-t border-gray-500 p-2">
             <NavLinks />
           </div>
         )}
