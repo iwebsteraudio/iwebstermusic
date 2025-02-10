@@ -13,6 +13,7 @@ import Videos from "./Components/Videos";
 import About from "./Components/About";
 
 const App: React.FC = () => {
+
   return (
     <section>
     <div className="relative min-h-screen w-full">

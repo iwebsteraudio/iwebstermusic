@@ -137,31 +137,31 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
     sound?.seek(value);
   };
 
-  return (      
-        <>
-          <PlayerControls
-            isPlaying={isPlaying}
-            onPlayPause={playingButton}
-            nextTrack={nextTrack}
-            prevTrack={prevTrack}
-            sound={sound}
-            disabled={!sound}
-          />
-          <TimeDisplay
-            currTime={currTime}
-            totalTime={durationInSeconds}
-            seconds={seconds}
-            onSeek={handleSeekChange}
-            onSeekStart={handleSeekStart}
-            onSeekEnd={handleSeekEnd}
-          />
-          <SongList
-            songData={songData}
-            trackIndex={trackIndex}
-            onSongSelect={handleSongSelect}
-          />
-          <VolumeSlider volume={volume} onVolumeChange={handleVolumeChange} />
-        </>
+  return (
+    <>
+      <PlayerControls
+        isPlaying={isPlaying}
+        onPlayPause={playingButton}
+        nextTrack={nextTrack}
+        prevTrack={prevTrack}
+        sound={sound}
+        disabled={!sound}
+      />
+      <TimeDisplay
+        currTime={currTime}
+        totalTime={durationInSeconds}
+        seconds={seconds}
+        onSeek={handleSeekChange}
+        onSeekStart={handleSeekStart}
+        onSeekEnd={handleSeekEnd}
+      />
+      <SongList
+        songData={songData}
+        trackIndex={trackIndex}
+        onSongSelect={handleSongSelect}
+      />
+      <VolumeSlider volume={volume} onVolumeChange={handleVolumeChange} />
+    </>
   );
 };
 

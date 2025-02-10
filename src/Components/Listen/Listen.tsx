@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchMp3s } from "../../../api/Api";
 import PlayerComponent from "./PlayerComponent";
-import { SongMp3 } from "utils/types"
-
+import { SongMp3 } from "utils/types";
 
 const Listen: React.FC = () => {
   const [songData, setSongData] = useState<SongMp3[]>([]);
@@ -43,8 +42,7 @@ const Listen: React.FC = () => {
   const songPath = songData[trackIndex]?.url || "";
 
   return (
-<div className="relative isolate rounded-3xl bg-white opacity-90 max-w-3xl mx-auto border-4 border-indigo-300 text-xs">
-
+    <div className="relative isolate rounded-3xl bg-white opacity-90 max-w-3xl mx-auto border-4 border-indigo-300 text-xs">
       <h2 className="p-8">Now Playing:</h2>
       <div>
         <h3 className="title font-righteous text-2xl pb-8">
@@ -60,7 +58,6 @@ const Listen: React.FC = () => {
           trackIndex={trackIndex}
           setTrackIndex={setTrackIndex}
         />
-      
       </div>
     </div>
   );

@@ -5,24 +5,24 @@ import Listen from "./Listen/Listen";
 const Home: React.FC = () => {
   return (
     <>
-    <section
-    className="relative flex items-center flex-col">
-      <div className="relative isolate rounded-3xl bg-white opacity-90 max-w-3xl mx-auto border-4 border-indigo-300 text-xs">
-
-      <iframe
-        width="560"
-        height="315"
-        className="rounded-lg relative flex m-20 justify-center items-center"
-        src="https://www.youtube.com/embed/uGpb0HYfMuc?si=xWa_38ohkm9p9Wsy"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        ></iframe>
+      <section className="relative flex items-center flex-col">
+        <div className="relative isolate rounded-3xl bg-white opacity-90 max-w-3xl mx-auto">
+          {/* Responsive Video Wrapper */}
+          <div className="w-full flex justify-center">
+            <div className="w-full max-w-3xl min-h-[400px] sm:min-h-[500px] aspect-video border-4 border-indigo-300 bg-white opacity-90 rounded-3xl p-5">
+              <iframe
+                className="w-full h-full rounded-lg"
+                src="https://www.youtube.com/embed/uGpb0HYfMuc?si=xWa_38ohkm9p9Wsy"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              ></iframe>
+            </div>
+          </div>
         </div>
-      <div id="listen" className="bg-transparent pt-8">
-        <Listen />
-      </div>
-
-    </section>
+        <div id="listen" className="bg-transparent pt-8">
+          <Listen />
+        </div>
+      </section>
       <section className="relative flex mt-20 justify-center items-center w-full ">
         <div className="relative w-full sm:w-3/4 md:w-1/2 h-auto sm:h-1/2 mx-5 mb-20">
           <img
