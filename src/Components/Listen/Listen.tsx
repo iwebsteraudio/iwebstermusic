@@ -39,7 +39,7 @@ const Listen: React.FC = () => {
     return <div>{err}</div>;
   }
 
-  const songPath = songData[trackIndex]?.url || "";
+  const songPath = songData[trackIndex]?.url.replace('.mp3', '.m4a') || "";
 
   return (
     <div className="relative isolate rounded-3xl bg-white opacity-90 max-w-3xl mx-auto border-4 border-indigo-300 text-xs">
