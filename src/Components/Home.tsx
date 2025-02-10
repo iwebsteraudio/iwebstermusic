@@ -9,7 +9,7 @@ const Home: React.FC = () => {
         <div className="relative isolate rounded-3xl bg-white opacity-90 max-w-3xl mx-auto">
           {/* Responsive Video Wrapper */}
           <div className="w-full flex justify-center">
-            <div className="w-full max-w-3xl min-h-[400px] sm:min-h-[500px] aspect-video border-4 border-indigo-300 bg-white opacity-90 rounded-3xl p-5">
+            <div className="w-full max-w-3xl h-auto sm:min-h-[500px] aspect-video border-4 border-indigo-300 bg-white opacity-90 rounded-3xl p-5">
               <iframe
                 className="w-full h-full rounded-lg"
                 src="https://www.youtube.com/embed/uGpb0HYfMuc?si=xWa_38ohkm9p9Wsy"
