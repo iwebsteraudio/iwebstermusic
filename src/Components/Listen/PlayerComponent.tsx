@@ -36,6 +36,8 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({
   const [play, { pause, stop, duration, sound }] = useSound(songPath, {
     format: ["mp3"],
     volume: 1,
+    muted: false,
+    html5: true,
     onend: () => {
       setTrackIndex((prevIndex) => (prevIndex + 1) % songData.length);
       setIsPlaying(false);
