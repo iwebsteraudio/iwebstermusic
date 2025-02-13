@@ -42,10 +42,10 @@ const Listen: React.FC = () => {
   const songPath = songData[trackIndex]?.url.replace('.mp3', '.m4a') || "";
 
   return (
-    <div className="relative isolate rounded-3xl bg-white opacity-90 max-w-3xl mx-auto border-4 border-indigo-300 text-xs">
-      <h2 className="p-8">Now Playing:</h2>
+    <div className="relative isolate  bg-white opacity-90 max-w-3xl mx-auto text-xs p-5 sm:p-8 mt-10">
+      <h2 className="p-2 sm:p-4 text-base sm:text-sm">Now Playing:</h2>
       <div>
-        <h3 className="title font-righteous text-2xl pb-8">
+        <h3 className="title font-righteous text-lg break-words sm:text-xl text-center">
           {songData[trackIndex]?.fileName.split(".")[0].split("_").join(" ")}
         </h3>
         <PlayerComponent

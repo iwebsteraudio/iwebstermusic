@@ -29,7 +29,7 @@ const App: React.FC = () => {
       <div className="relative z-10 flex flex-col min-h-screen"> {/* Ensure z-index is higher */}
         <Header />
         <Nav />
-        <main className="relative z-20 flex-grow p-5 bg-transparent">
+        <main className="relative z-20 flex-grow bg-transparent">
           <Routes>
             <Route path="/" element={<Home />} />       
             <Route path="/contact" element={<Contact />} />

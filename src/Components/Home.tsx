@@ -5,11 +5,11 @@ import Listen from "./Listen/Listen";
 const Home: React.FC = () => {
   return (
     <>
-      <section className="relative flex items-center flex-col">
-        <div className="relative isolate rounded-3xl bg-white opacity-90 max-w-3xl mx-auto">
-          {/* Responsive Video Wrapper */}
-          <div className="w-full flex justify-center">
-            <div className="w-full max-w-3xl h-auto sm:min-h-[500px] aspect-video border-4 border-indigo-300 bg-white opacity-90 rounded-3xl p-5">
+      <section className="relative flex items-center flex-col my-20">
+        {/* Responsive Video Wrapper */}
+        <div className="w-full bg-white opacity-90">
+          <div className="relative isolate rounded-3xl bg-white opacity-90 max-w-3xl mx-auto">
+            <div className="w-full max-w-3xl h-auto sm:min-h-[500px] aspect-video  p-5">
               <iframe
                 className="w-full h-full rounded-lg"
                 src="https://www.youtube.com/embed/uGpb0HYfMuc?si=xWa_38ohkm9p9Wsy"
@@ -40,7 +40,7 @@ const Home: React.FC = () => {
 
       <Contact />
 
-      <section className="shadow-md mt-10 p-8 rounded-md text-1 font-monaSans bg-white border-4 border-indigo-900">
+      <section className="shadow-md p-10 mt-10 mb-10 p-8text-1 font-monaSans bg-white border-4">
         <h3 className="font-extrabold mb-5">
           CREATE THE SOUNDTRACK TO YOUR EVENT
         </h3>
