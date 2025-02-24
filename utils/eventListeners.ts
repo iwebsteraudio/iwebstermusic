@@ -15,9 +15,7 @@ export const konamiCodeListener = (
       if (position === konamiCode.length) {
         onComplete();
         position = 0;
-      } else {
-        position = 0;
-      }
+      } 
     }
   };
 
