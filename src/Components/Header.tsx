@@ -24,7 +24,7 @@ const Header: React.FC = () => {
           iwebstermusic
         </Link>
         <h2 className="font-monaSans italic relative z-10">
-          acoustic guitarist, bass-player and singer
+          acoustic guitarist, bass-player, singer, teacher
         </h2>
       </div>
       {/* Instagram Link */}

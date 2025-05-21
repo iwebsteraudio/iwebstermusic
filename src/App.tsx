@@ -18,8 +18,8 @@ const App: React.FC = () => {
     <div className="relative min-h-screen w-full">
       {/* Background image */}
       <div
-        className={`fixed inset-0 bg-[url('../assets/img/LivePic.jpg')] bg-cover bg-center bg-no-repeat bg-fixed`}
-        style={{ backgroundPositionY: 120 }}
+        className={`fixed inset-0 bg-[url('../assets/img/WeShallOvercome.jpg')] bg-cover bg-center bg-no-repeat bg-fixed`}
+        style={{ backgroundPosition: 'center 30%' }}
       ></div>
 
       {/* Overlay */}

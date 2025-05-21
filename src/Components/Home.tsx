@@ -35,7 +35,9 @@ const Home: React.FC = () => {
               Ian Webster - Guitarist and Singer
             </h2>
           </div>
+          
         </div>
+   
       </section>
 
       <Contact />
@@ -56,6 +58,7 @@ const Home: React.FC = () => {
           Neil Young. I can even bring a drum-machine and a looper pedal to
           create a one-man-band!
         </p>
+      
       </section>
     </>
   );
