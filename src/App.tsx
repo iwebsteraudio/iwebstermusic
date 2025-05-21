@@ -10,16 +10,20 @@ import SetList from "./Components/SetList/SetList";
 import Videos from "./Components/Videos";
 import About from "./Components/About";
 import ErrorPage from "./Components/ErrorPage";
+import bgImage from "../assets/img/WeShallOvercome.jpg"
 
 const App: React.FC = () => {
-
+console.log(bgImage)
   return (
     <section>
     <div className="relative min-h-screen w-full">
       {/* Background image */}
       <div
-        className={`fixed inset-0 bg-[url('../assets/img/WeShallOvercome.jpg')] bg-cover bg-center bg-no-repeat bg-fixed`}
-        style={{ backgroundPosition: 'center 30%' }}
+        className={`fixed inset-0 bg-cover bg-center bg-no-repeat bg-fixed`}
+        style={{
+           backgroundImage: `url(${bgImage})`,
+           backgroundPosition: "center 30%",
+          }}
       ></div>
 
       {/* Overlay */}
