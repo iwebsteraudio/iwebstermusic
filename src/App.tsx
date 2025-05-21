@@ -22,7 +22,7 @@ console.log(bgImage)
         className={`fixed inset-0 bg-cover bg-center bg-no-repeat bg-fixed`}
         style={{
            backgroundImage: `url(${bgImage})`,
-           backgroundPosition: "center 30%",
+           backgroundPosition: "30% 20%",
           }}
       ></div>
 
