@@ -46,7 +46,7 @@ const Contact: React.FC = () => {
         setStatus(`Error: ${response.data.message}`);
       }
     } catch (error: unknown) {
-      setStatus("Error sending email");
+      setStatus("Error sending email - please email iwebster.audio@gmail.com instead");
     }
 
     setFormData({
@@ -138,7 +138,7 @@ const Contact: React.FC = () => {
             className="border-b border-gray-300 focus:border-black focus:outline-none transition-all duration-1000 w-full py-2 px-3"
             id="message"
             name="message"
-            placeholder="Tell me about the event, any special requests?..."
+            placeholder="Tell me about the event, any special requests?... Perhaps you'd like guitar, bass or beginner piano lessons!"
             rows={5}
             value={formData.message}
             onChange={handleChange}

@@ -10,9 +10,11 @@ const Home: React.FC = () => {
         <div className="w-full bg-white opacity-90">
           <div className="relative isolate rounded-3xl bg-white opacity-90 max-w-3xl mx-auto">
             <div className="w-full max-w-3xl h-auto sm:min-h-[500px] aspect-video  p-5">
+        
+
               <iframe
                 className="w-full h-full rounded-lg"
-                src="https://www.youtube.com/embed/uGpb0HYfMuc?si=xWa_38ohkm9p9Wsy"
+                src="https://www.youtube.com/embed/wYryECe9xio?si=UygmMcj1jcba3ER0"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               ></iframe>
@@ -35,9 +37,7 @@ const Home: React.FC = () => {
               Ian Webster - Guitarist and Singer
             </h2>
           </div>
-          
         </div>
-   
       </section>
 
       <Contact />
@@ -58,7 +58,6 @@ const Home: React.FC = () => {
           Neil Young. I can even bring a drum-machine and a looper pedal to
           create a one-man-band!
         </p>
-      
       </section>
     </>
   );
